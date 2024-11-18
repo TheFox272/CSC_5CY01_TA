@@ -1,4 +1,10 @@
-/home/moma/eclipse-workspace/webapi/src/main/java/com/ensta/webapi/controller/filmController.java
-/home/moma/eclipse-workspace/webapi/src/main/java/com/ensta/webapi/Serializer.java
-/home/moma/eclipse-workspace/webapi/src/main/java/com/ensta/webapi/model/Film.java
-/home/moma/eclipse-workspace/webapi/src/main/java/com/ensta/webapi/SerializerException.java
+/media/fox/Data/ENSTA/Oxyl/TP Java/CSC_5CY01_TA/src/main/java/com/ensta/myfilmlist/MyfilmlistApplication.java
+/media/fox/Data/ENSTA/Oxyl/TP Java/CSC_5CY01_TA/src/main/java/com/ensta/myfilmlist/mapper/FilmMapper.java
+/media/fox/Data/ENSTA/Oxyl/TP Java/CSC_5CY01_TA/src/main/java/com/ensta/myfilmlist/model/Film.java
+/media/fox/Data/ENSTA/Oxyl/TP Java/CSC_5CY01_TA/src/main/java/com/ensta/myfilmlist/dto/FilmDTO.java
+/media/fox/Data/ENSTA/Oxyl/TP Java/CSC_5CY01_TA/src/main/java/com/ensta/myfilmlist/exception/ServiceException.java
+/media/fox/Data/ENSTA/Oxyl/TP Java/CSC_5CY01_TA/src/main/java/com/ensta/myfilmlist/exception/ControllerException.java
+/media/fox/Data/ENSTA/Oxyl/TP Java/CSC_5CY01_TA/src/main/java/com/ensta/myfilmlist/MyfilmlistMain.java
+/media/fox/Data/ENSTA/Oxyl/TP Java/CSC_5CY01_TA/src/main/java/com/ensta/myfilmlist/MyfilmlistTests.java
+/media/fox/Data/ENSTA/Oxyl/TP Java/CSC_5CY01_TA/src/main/java/com/ensta/myfilmlist/persistence/ConnectionManager.java
+/media/fox/Data/ENSTA/Oxyl/TP Java/CSC_5CY01_TA/src/main/java/com/ensta/myfilmlist/form/FilmForm.java
