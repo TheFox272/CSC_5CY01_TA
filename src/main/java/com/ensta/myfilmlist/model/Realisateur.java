@@ -3,11 +3,14 @@ package com.ensta.myfilmlist.model;
 import java.time.LocalDate;
 import java.util.List;
 
+//********************************************************************************************************************
+
 /**
- * Représente un Réalisateur.
+ * Représente un réalisateur
  */
 public class Realisateur {
 
+    // Attributs
     private long id;
     private String nom;
     private String prenom;

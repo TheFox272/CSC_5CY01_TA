@@ -1,18 +1,32 @@
 package com.ensta.myfilmlist.model;
 
+import com.ensta.myfilmlist.model.Realisateur;
+
+//********************************************************************************************************************
+
 /**
- * Represente un Film.
+ * Représente un film
  */
 public class Film {
 
+	// Attributs
 	private long id;
-
 	private String titre;
-
 	private int duree;
+	private Realisateur realisateur;
 
-	private Class Realisateur;
+	// Constructeurs
+	public Film() {
+	}
 
+	public Film(long id, String titre, int duree, Class Realisateur) {
+		this.id = id;
+		this.titre = titre;
+		this.duree = duree;
+		this.realisateur = realisateur;
+	}
+
+	// Getters et Setters
 	public long getId() {
 		return id;
 	}
@@ -37,12 +51,12 @@ public class Film {
 		this.duree = duree;
 	}
 
-	public Class getRealisateur(){
-		return Realisateur;
+	public Realisateur getRealisateur(){
+		return realisateur;
 	}
 
-	public void setRealisateur(Class Realisateur){
-		this.Realisateur = Realisateur;
+	public void setRealisateur(Realisateur realisateur){
+		this.realisateur = realisateur;
 	}
 
 
