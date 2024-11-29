@@ -9,7 +9,7 @@ public interface RealisateurDAO {
     /* interface pour l'implementation du DAO de realisateurs
      */
 
-    List<Realisateur> findall();
+    List<Realisateur> findAll();
     Realisateur findByNomAndPrenom(String nom, String prenom) throws EmptyResultDataAccessException, RuntimeException;
     Optional<Realisateur> findById(long id);
 
