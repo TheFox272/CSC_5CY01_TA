@@ -7,9 +7,12 @@ import com.ensta.myfilmlist.persistence.ConnectionManager;
 import java.util.Optional;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Repository
 public class JdbcRealisateurDAO implements RealisateurDAO{
 
     /*

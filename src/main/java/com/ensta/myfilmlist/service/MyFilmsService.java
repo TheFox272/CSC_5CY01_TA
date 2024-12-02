@@ -2,13 +2,11 @@ package com.ensta.myfilmlist.service;
 
 import java.util.List;
 
-import com.ensta.myfilmlist.dao.FilmDAO;
-import com.ensta.myfilmlist.dao.impl.JdbcFilmDAO;
 import com.ensta.myfilmlist.dto.FilmDTO;
+import com.ensta.myfilmlist.dto.RealisateurDTO;
 import com.ensta.myfilmlist.exception.ServiceException;
-import com.ensta.myfilmlist.model.Realisateur;
 import com.ensta.myfilmlist.model.Film;
-
+import com.ensta.myfilmlist.model.Realisateur;
 //********************************************************************************************************************
 
 public interface MyFilmsService {
@@ -38,4 +36,9 @@ public interface MyFilmsService {
     List<Realisateur> updateRealisateurCelebres(List<Realisateur> realisateurs) throws ServiceException;
     List<FilmDTO> findAllFilms() throws ServiceException;
 
+    /*
+    Méthodes liées aux réalisateurs
+     */
+    List<RealisateurDTO> findAllRealisateurs() throws ServiceException;
+    RealisateurDTO findRealisateurByNomAndPrenom(String nom, String prenom) throws ServiceException;
 }

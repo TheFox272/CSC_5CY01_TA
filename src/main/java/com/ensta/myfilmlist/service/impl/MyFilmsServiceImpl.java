@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import com.ensta.myfilmlist.dao.FilmDAO;
 import com.ensta.myfilmlist.dao.impl.JdbcFilmDAO;
+import com.ensta.myfilmlist.dao.impl.JdbcRealisateurDAO;
 import com.ensta.myfilmlist.dto.FilmDTO;
 import com.ensta.myfilmlist.exception.ServiceException;
 import com.ensta.myfilmlist.mapper.FilmMapper;
@@ -16,6 +17,11 @@ import com.ensta.myfilmlist.model.Film;
 import com.ensta.myfilmlist.exception.ServiceException;
 import com.ensta.myfilmlist.model.Realisateur;
 import com.ensta.myfilmlist.service.MyFilmsService;
+import com.ensta.myfilmlist.dao.RealisateurDAO;
+import com.ensta.myfilmlist.dto.RealisateurDTO;
+import com.ensta.myfilmlist.mapper.RealisateurMapper;
+
+
 
 //********************************************************************************************************************
 
@@ -24,10 +30,14 @@ public class MyFilmsServiceImpl implements MyFilmsService {
     // Constantes
     public static final int NB_FILMS_MIN_REALISATEUR_CELEBRE = 3;
     public FilmDAO filmDAO;
+    public RealisateurDAO realisateurDAO;
+
 
     public MyFilmsServiceImpl() {
         this.filmDAO = new JdbcFilmDAO();
+        this.realisateurDAO = new JdbcRealisateurDAO();
     }
+
     @Override
     public Realisateur updateRealisateurCelebre(Realisateur realisateur) throws ServiceException {
         // Realisateur non null
@@ -142,5 +152,23 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             throw new ServiceException("Problème lors de la récupération", e);
         }
     }
+    @Override
+    public List<RealisateurDTO> findAllRealisateurs() throws ServiceException {
+        try {
+            List<Realisateur> realisateurs = this.realisateurDAO.findAll();
+            return RealisateurMapper.convertRealisateurToRealisateurDTOs(realisateurs);
+        } catch (Exception e) {
+            throw new ServiceException("Erreur lors de la récupération de la liste des réalisateurs", e);
+        }
+    }
 
+    @Override
+    public RealisateurDTO findRealisateurByNomAndPrenom(String nom, String prenom) throws ServiceException {
+        try {
+            Realisateur realisateur = this.realisateurDAO.findByNomAndPrenom(nom, prenom);
+            return RealisateurMapper.convertRealisateurToRealisateurDTO(realisateur);
+        } catch (Exception e) {
+            throw new ServiceException("Erreur lors de la récupération du réalisateur", e);
+        }
+    }
 }
