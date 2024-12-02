@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -100,5 +101,42 @@ public class JdbcFilmDAO implements FilmDAO {
         film.setId(keyHolder.getKey().longValue());
         return film;
     }
+
+    @Override
+    public Optional<Film> findById(long id) {
+        String sql = "SELECT " +
+                "f.id AS film_id, f.titre AS film_titre, f.duree AS film_duree, " +
+                "r.id AS realisateur_id, r.nom AS realisateur_nom, r.prenom AS realisateur_prenom, " +
+                "r.date_naissance AS realisateur_date_naissance, r.celebre AS realisateur_celebre " +
+                "FROM FILM f " +
+                "LEFT JOIN REALISATEUR r ON f.realisateur_id = r.id " +
+                "WHERE f.id = ?";
+
+        List<Film> films = jdbcTemplate.query(sql, new FilmRowMapper(), id);
+
+        return films.isEmpty() ? Optional.empty() : Optional.of(films.get(0));
+    }
+
+    @Override
+    public void delete(Film film) {
+        String sql = "DELETE FROM FILM WHERE id = ?";
+        jdbcTemplate.update(sql, film.getId());
+    }
+
+
+    @Override
+    public List<Film> findByRealisateurId(long realisateurId) {
+        String sql = "SELECT " +
+                "f.id AS film_id, f.titre AS film_titre, f.duree AS film_duree, " +
+                "r.id AS realisateur_id, r.nom AS realisateur_nom, r.prenom AS realisateur_prenom, " +
+                "r.date_naissance AS realisateur_date_naissance, r.celebre AS realisateur_celebre " +
+                "FROM FILM f " +
+                "LEFT JOIN REALISATEUR r ON f.realisateur_id = r.id " +
+                "WHERE r.id = ?";
+
+        return jdbcTemplate.query(sql, new FilmRowMapper(), realisateurId);
+    }
+
+
 }
 
