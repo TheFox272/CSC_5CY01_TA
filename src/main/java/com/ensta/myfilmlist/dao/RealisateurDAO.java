@@ -2,9 +2,12 @@ package com.ensta.myfilmlist.dao;
 
 import com.ensta.myfilmlist.model.Realisateur;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface RealisateurDAO {
     /* interface pour l'implementation du DAO de realisateurs
      */
