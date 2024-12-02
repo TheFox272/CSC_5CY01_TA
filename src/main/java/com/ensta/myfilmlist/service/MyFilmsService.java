@@ -8,7 +8,7 @@ import com.ensta.myfilmlist.dto.FilmDTO;
 import com.ensta.myfilmlist.exception.ServiceException;
 import com.ensta.myfilmlist.model.Realisateur;
 import com.ensta.myfilmlist.model.Film;
-
+import com.ensta.myfilmlist.dto.RealisateurDTO;
 //********************************************************************************************************************
 
 public interface MyFilmsService {
@@ -38,4 +38,9 @@ public interface MyFilmsService {
     List<Realisateur> updateRealisateurCelebres(List<Realisateur> realisateurs) throws ServiceException;
     List<FilmDTO> findAllFilms() throws ServiceException;
 
+    /*
+    Méthodes liées aux réalisateurs
+     */
+    List<RealisateurDTO> findAllRealisateurs() throws ServiceException;
+    RealisateurDTO findRealisateurByNomAndPrenom(String nom, String prenom) throws ServiceException;
 }
