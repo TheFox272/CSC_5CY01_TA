@@ -12,6 +12,7 @@ import com.ensta.myfilmlist.dao.impl.JdbcFilmDAO;
 import com.ensta.myfilmlist.dao.impl.JdbcRealisateurDAO;
 import com.ensta.myfilmlist.dto.FilmDTO;
 import com.ensta.myfilmlist.exception.ServiceException;
+import com.ensta.myfilmlist.form.FilmForm;
 import com.ensta.myfilmlist.mapper.FilmMapper;
 import com.ensta.myfilmlist.model.Film;
 import com.ensta.myfilmlist.exception.ServiceException;
@@ -138,6 +139,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             .filter(realisateur -> realisateur.isCelebre())
             .toList();
     }
+
     @Override
     public List<FilmDTO> findAllFilms() throws ServiceException {
         try {
@@ -148,6 +150,25 @@ public class MyFilmsServiceImpl implements MyFilmsService {
 
         } catch (Exception e) {
             throw new ServiceException("Problème lors de la récupération", e);
+        }
+    }
+    @Override
+    public FilmDTO createFilm(FilmForm filmForm) throws ServiceException {
+        try {
+            Realisateur realisateur = realisateurDAO.findById(filmForm.getRealisateurId())
+                    .orElseThrow(() -> new ServiceException("Le réalisateur spécifié n'existe pas."));
+
+            Film film = new Film();
+            film.setTitre(filmForm.getTitre());
+            film.setDuree(filmForm.getDuree());
+            film.setRealisateur(realisateur);
+
+            filmDAO.save(film);
+
+            return FilmMapper.convertFilmToFilmDTO(film);
+
+        } catch (Exception e) {
+            throw new ServiceException("Erreur lors de la création du film", e);
         }
     }
     @Override
