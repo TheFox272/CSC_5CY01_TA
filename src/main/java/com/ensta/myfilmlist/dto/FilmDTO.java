@@ -1,5 +1,7 @@
 package com.ensta.myfilmlist.dto;
 
+import com.ensta.myfilmlist.model.Realisateur;
+
 /**
  * Contient les donnees d'un Film.
  */
@@ -10,6 +12,15 @@ public class FilmDTO {
 	private String titre;
 
 	private int duree;
+
+	private RealisateurDTO realisateur;
+
+	public RealisateurDTO getRealisateur() {
+		return realisateur;
+	}
+	public void setRealisateur(RealisateurDTO realisateur) {
+		this.realisateur = realisateur;
+	}
 
 	public long getId() {
 		return id;
