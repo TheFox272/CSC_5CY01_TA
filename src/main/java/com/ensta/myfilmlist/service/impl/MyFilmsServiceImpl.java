@@ -126,8 +126,10 @@ public class MyFilmsServiceImpl implements MyFilmsService {
                 }
             })
             .filter(realisateur -> realisateur.isCelebre())
-            .toList();
+            .collect(Collectors.toList());
     }
+
+
     @Override
     public List<FilmDTO> findAllFilms() throws ServiceException {
         try {
