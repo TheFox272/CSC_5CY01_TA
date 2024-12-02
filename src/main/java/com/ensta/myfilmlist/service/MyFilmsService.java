@@ -2,6 +2,9 @@ package com.ensta.myfilmlist.service;
 
 import java.util.List;
 
+import com.ensta.myfilmlist.dao.FilmDAO;
+import com.ensta.myfilmlist.dao.impl.JdbcFilmDAO;
+import com.ensta.myfilmlist.dto.FilmDTO;
 import com.ensta.myfilmlist.exception.ServiceException;
 import com.ensta.myfilmlist.model.Realisateur;
 import com.ensta.myfilmlist.model.Film;
@@ -9,7 +12,7 @@ import com.ensta.myfilmlist.model.Film;
 //********************************************************************************************************************
 
 public interface MyFilmsService {
-    
+
     /**
      * Met à jour la célébrité d'un réalisateur (en fonction du nombre de films réalisés)
      * @param realisateur le réalisateur à mettre à jour
@@ -33,5 +36,6 @@ public interface MyFilmsService {
      * @return la liste des réalisateurs célébres parmi les réalisateurs mis à jour
      */
     List<Realisateur> updateRealisateurCelebres(List<Realisateur> realisateurs) throws ServiceException;
+    List<FilmDTO> findAllFilms() throws ServiceException;
 
 }
