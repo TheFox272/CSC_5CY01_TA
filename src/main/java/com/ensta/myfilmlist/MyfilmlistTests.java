@@ -9,7 +9,7 @@ import com.ensta.myfilmlist.model.Realisateur;
 import com.ensta.myfilmlist.model.Film;
 import com.ensta.myfilmlist.service.impl.MyFilmsServiceImpl;
 import com.ensta.myfilmlist.service.MyFilmsService;
-
+import com.ensta.myfilmlist.dto.FilmDTO;
 
 /**
  * Classe de tests du service MyFilmsServiceImpl.
@@ -208,16 +208,18 @@ public class MyfilmlistTests {
 	 * Permet de tester la recuperation des films.
 	 */
 	public void findAllFilmsTest() {
-//		try {
-//			List<FilmDTO> films = myFilmsService.findAllFilms();
-//
-//			// Attendue : 4
-//			System.out.println("Combien y a-t-il de films ? " + films.size());
-//
-//			films.forEach(System.out::println);
-//		} catch (ServiceException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			List<FilmDTO> films = myFilmsService.findAllFilms();
+
+			// Attendue : 4
+			System.out.println("Combien y a-t-il de films ? " + films.size());
+
+			films.forEach(System.out::println);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+
+
+	}
 	}
 
 	/**

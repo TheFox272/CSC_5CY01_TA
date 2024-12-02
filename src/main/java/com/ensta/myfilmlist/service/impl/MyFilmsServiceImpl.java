@@ -3,10 +3,15 @@ package com.ensta.myfilmlist.service.impl;
 import java.lang.Math;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.Arrays;
 
+import com.ensta.myfilmlist.dao.FilmDAO;
+import com.ensta.myfilmlist.dao.impl.JdbcFilmDAO;
+import com.ensta.myfilmlist.dto.FilmDTO;
 import com.ensta.myfilmlist.exception.ServiceException;
+import com.ensta.myfilmlist.mapper.FilmMapper;
 import com.ensta.myfilmlist.model.Film;
 import com.ensta.myfilmlist.exception.ServiceException;
 import com.ensta.myfilmlist.model.Realisateur;
@@ -18,7 +23,11 @@ public class MyFilmsServiceImpl implements MyFilmsService {
 
     // Constantes
     public static final int NB_FILMS_MIN_REALISATEUR_CELEBRE = 3;
+    public FilmDAO filmDAO;
 
+    public MyFilmsServiceImpl() {
+        this.filmDAO = new JdbcFilmDAO();
+    }
     @Override
     public Realisateur updateRealisateurCelebre(Realisateur realisateur) throws ServiceException {
         // Realisateur non null
@@ -118,6 +127,18 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             })
             .filter(realisateur -> realisateur.isCelebre())
             .toList();
+    }
+    @Override
+    public List<FilmDTO> findAllFilms() throws ServiceException {
+        try {
+            List<Film> films = filmDAO.findAll();
+            return films.stream().map(FilmMapper::convertFilmToFilmDTO).collect(Collectors.toList());
+
+
+
+        } catch (Exception e) {
+            throw new ServiceException("Problème lors de la récupération", e);
+        }
     }
 
 }
