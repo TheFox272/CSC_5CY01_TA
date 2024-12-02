@@ -5,8 +5,10 @@ import java.util.List;
 import com.ensta.myfilmlist.dto.FilmDTO;
 import com.ensta.myfilmlist.dto.RealisateurDTO;
 import com.ensta.myfilmlist.exception.ServiceException;
+import com.ensta.myfilmlist.form.FilmForm;
 import com.ensta.myfilmlist.model.Film;
 import com.ensta.myfilmlist.model.Realisateur;
+
 //********************************************************************************************************************
 
 public interface MyFilmsService {
@@ -42,9 +44,5 @@ public interface MyFilmsService {
     List<RealisateurDTO> findAllRealisateurs() throws ServiceException;
     RealisateurDTO findRealisateurByNomAndPrenom(String nom, String prenom) throws ServiceException;
 
-    /*
-    *Trouver le film par son identifiant.
-    */
-   FilmDTO findFilmById(long id) throws ServiceException;
-   void deleteFilm(long id) throws ServiceException;
+    FilmDTO createFilm(FilmForm filmForm) throws ServiceException;
 }
