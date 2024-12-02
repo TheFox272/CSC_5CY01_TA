@@ -31,7 +31,7 @@ public class JdbcFilmDAO implements FilmDAO {
     @Override
     public List<Film> findAll() {
         List<Film> films = new ArrayList<>();
-        String requete = "SELECT id, titre, duree FROM films";
+        String requete = "SELECT id, titre, duree FROM FILM";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(requete);
              ResultSet resultSet = preparedStatement.executeQuery()) {
