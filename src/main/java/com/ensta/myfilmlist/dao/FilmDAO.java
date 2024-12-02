@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 public interface FilmDAO {
 
     List<Film> findAll();
-
-
+    /* To add a film in the DB */
+    Film save(Film film);
 
 }
