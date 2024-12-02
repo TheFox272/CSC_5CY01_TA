@@ -40,7 +40,7 @@ public class JdbcFilmDAO implements FilmDAO {
 
     @Override
     public Optional<Film> findById(long id) {
-        String requete = "SELECT id, titre, duree FROM films WHERE id = ?";
+        String requete = "SELECT id, titre, duree FROM FILM WHERE id = ?";
         try (Connection connection = dataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(requete)) {
             
@@ -61,7 +61,7 @@ public class JdbcFilmDAO implements FilmDAO {
 
     @Override
     public void delete(Film film) {
-        String requete = "DELETE FROM films WHERE id = ?";
+        String requete = "DELETE FROM FILM WHERE id = ?";
         try (Connection connection = dataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(requete)) {
             preparedStatement.setLong(1, film.getId());
@@ -74,7 +74,7 @@ public class JdbcFilmDAO implements FilmDAO {
     @Override
     public List<Film> findByRealisateurId(long realisateurId) {
         List<Film> films = new ArrayList<>();
-        String requete = "SELECT id, titre, duree FROM films WHERE realisateur = ?";
+        String requete = "SELECT id, titre, duree FROM FILM WHERE realisateur = ?";
         try (Connection connection = dataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(requete)) {
             preparedStatement.setLong(1, realisateurId);

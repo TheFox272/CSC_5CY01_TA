@@ -1,25 +1,22 @@
 package com.ensta.myfilmlist.service.impl;
 
-import java.lang.Math;
-
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.ensta.myfilmlist.dao.FilmDAO;
+import com.ensta.myfilmlist.dao.RealisateurDAO;
 import com.ensta.myfilmlist.dao.impl.JdbcFilmDAO;
 import com.ensta.myfilmlist.dao.impl.JdbcRealisateurDAO;
 import com.ensta.myfilmlist.dto.FilmDTO;
+import com.ensta.myfilmlist.dto.RealisateurDTO;
 import com.ensta.myfilmlist.exception.ServiceException;
 import com.ensta.myfilmlist.mapper.FilmMapper;
+import com.ensta.myfilmlist.mapper.RealisateurMapper;
 import com.ensta.myfilmlist.model.Film;
-import com.ensta.myfilmlist.exception.ServiceException;
 import com.ensta.myfilmlist.model.Realisateur;
 import com.ensta.myfilmlist.service.MyFilmsService;
-import com.ensta.myfilmlist.dao.RealisateurDAO;
-import com.ensta.myfilmlist.dto.RealisateurDTO;
-import com.ensta.myfilmlist.mapper.RealisateurMapper;
 
 
 
@@ -169,4 +166,28 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             throw new ServiceException("Erreur lors de la récupération du réalisateur", e);
         }
     }
+
+    @Override
+    public FilmDTO findFilmById(long id) throws ServiceException {
+        try {
+            Optional<Film> optionalFilm = this.filmDAO.findById(id);
+                return FilmMapper.convertFilmToFilmDTO(optionalFilm.get());
+            
+        } catch (Exception e) {
+            throw new ServiceException("Erreur lors de la récupération du film", e);
+        }
+    }
+
+    @Override
+    public void deleteFilm(long id) throws ServiceException{
+        try {
+        Optional<Film> optionalFilm = filmDAO.findById(id);
+        filmDAO.delete(optionalFilm.get());}
+        catch (Exception e) {
+            throw new ServiceException("Erreur lors de la suppression du film", e);
+        }
+    }
+
+
+
 }

@@ -3,8 +3,6 @@ package com.ensta.myfilmlist;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ensta.myfilmlist.MyfilmlistTests;
-
 @SpringBootTest
 class MyfilmlistApplicationTests {
 
@@ -24,6 +22,8 @@ class MyfilmlistApplicationTests {
 		myFilmListTests.findFilmByIdTest();
 		myFilmListTests.deleteFilmByIdTest();
 		myFilmListTests.updateRealisateurCelebre();
+		myFilmListTests.findFilmByIdTest();
+		// myFilmListTests.deleteFilmByIdTest();
 	}
 
 }

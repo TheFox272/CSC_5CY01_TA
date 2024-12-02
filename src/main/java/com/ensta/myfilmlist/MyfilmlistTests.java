@@ -4,12 +4,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ensta.myfilmlist.exception.ServiceException;
-import com.ensta.myfilmlist.model.Realisateur;
-import com.ensta.myfilmlist.model.Film;
-import com.ensta.myfilmlist.service.impl.MyFilmsServiceImpl;
-import com.ensta.myfilmlist.service.MyFilmsService;
 import com.ensta.myfilmlist.dto.FilmDTO;
+import com.ensta.myfilmlist.exception.ServiceException;
+import com.ensta.myfilmlist.model.Film;
+import com.ensta.myfilmlist.model.Realisateur;
+import com.ensta.myfilmlist.service.MyFilmsService;
+import com.ensta.myfilmlist.service.impl.MyFilmsServiceImpl;
 
 /**
  * Classe de tests du service MyFilmsServiceImpl.
@@ -253,29 +253,29 @@ public class MyfilmlistTests {
 	 * Permet de tester la recuperation d'un film par son identifiant.
 	 */
 	public void findFilmByIdTest() {
-//		try {
-//			FilmDTO avatar = myFilmsService.findFilmById(1);
-//			System.out.println("Le film avec l'identifiant 1 est : " + avatar);
-//		} catch (ServiceException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			FilmDTO avatar = myFilmsService.findFilmById(1);
+			System.out.println("Le film avec l'identifiant 1 est : " + avatar);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * Permet de tester la suppression d'un film avec son identifiant.
 	 */
 	public void deleteFilmByIdTest() {
-//		try {
-//			FilmDTO filmDTO = myFilmsService.findFilmById(5);
-//			System.out.println("Le film avec l'identifiant 5 est : " + filmDTO);
-//			myFilmsService.deleteFilm(5);
-//			filmDTO = myFilmsService.findFilmById(5);
-//
-//			System.out.println("Suppression du film avec l'identifiant 5...");
-//			System.out.println("Le film avec l'identifiant 5 est : " + filmDTO);
-//		} catch (ServiceException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			FilmDTO filmDTO = myFilmsService.findFilmById(5);
+			System.out.println("Le film avec l'identifiant 5 est : " + filmDTO);
+			myFilmsService.deleteFilm(5);
+			filmDTO = myFilmsService.findFilmById(5);
+
+			System.out.println("Suppression du film avec l'identifiant 5...");
+			System.out.println("Le film avec l'identifiant 5 est : " + filmDTO);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
