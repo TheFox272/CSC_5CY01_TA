@@ -22,9 +22,9 @@ class MyfilmlistApplicationTests {
 //		myFilmListTests.findFilmByIdTest();
 //		myFilmListTests.deleteFilmByIdTest();
 //		myFilmListTests.updateRealisateurCelebre();
-		myFilmListTests.createFilmTest();
+//		myFilmListTests.createFilmTest();
 		myFilmListTests.findFilmByIdTest();
-		// myFilmListTests.deleteFilmByIdTest();
+		myFilmListTests.deleteFilmByIdTest();
 	}
 
 }
