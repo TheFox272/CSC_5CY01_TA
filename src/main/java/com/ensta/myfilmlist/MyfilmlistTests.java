@@ -268,13 +268,13 @@ public class MyfilmlistTests {
 	 */
 	public void deleteFilmByIdTest() {
 		try {
-			FilmDTO filmDTO = myFilmsService.findFilmById(5);
-			System.out.println("Le film avec l'identifiant 5 est : " + filmDTO);
-			myFilmsService.deleteFilm(5);
-			filmDTO = myFilmsService.findFilmById(5);
+			FilmDTO filmDTO = myFilmsService.findFilmById(2);
+			System.out.println("Le film avec l'identifiant 2 est : " + filmDTO);
+			myFilmsService.deleteFilm(2);
+			filmDTO = myFilmsService.findFilmById(2);
 
-			System.out.println("Suppression du film avec l'identifiant 5...");
-			System.out.println("Le film avec l'identifiant 5 est : " + filmDTO);
+			System.out.println("Suppression du film avec l'identifiant 2...");
+			System.out.println("Le film avec l'identifiant 2 est : " + filmDTO);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}

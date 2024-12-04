@@ -191,13 +191,19 @@ public class MyFilmsServiceImpl implements MyFilmsService {
     @Override
     public FilmDTO findFilmById(long id) throws ServiceException {
         try {
-            Optional<Film> optionalFilm = this.filmDAO.findById(id);
-                return FilmMapper.convertFilmToFilmDTO(optionalFilm.get());
-            
-        } catch (Exception e) {
+            Film film = this.filmDAO.findById(id)
+                    .orElse(
+                        //System.out.println("Le réalisateur spécifié n'existe pas.");
+                        null
+        );
+            if (film == null) return null;
+            return FilmMapper.convertFilmToFilmDTO(film);
+        }  catch (Exception e) {
             throw new ServiceException("Erreur lors de la récupération du film", e);
         }
     }
+
+
 
     @Override
     public void deleteFilm(long id) throws ServiceException{

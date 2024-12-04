@@ -51,9 +51,9 @@ public class JdbcFilmDAO implements FilmDAO {
         @Override
         public Film mapRow(ResultSet resultSet, int rowNum) throws SQLException {
             Film film = new Film();
-            film.setId(resultSet.getLong("film_id"));
-            film.setTitre(resultSet.getString("film_titre"));
-            film.setDuree(resultSet.getInt("film_duree"));
+            film.setId(resultSet.getLong("id"));
+            film.setTitre(resultSet.getString("titre"));
+            film.setDuree(resultSet.getInt("duree"));
 
             Long realisateurId = resultSet.getLong("realisateur_id");
             if (!resultSet.wasNull()) { // Si le champ n'est pas NULL
@@ -104,17 +104,18 @@ public class JdbcFilmDAO implements FilmDAO {
 
     @Override
     public Optional<Film> findById(long id) {
-        String sql = "SELECT " +
-                "f.id AS film_id, f.titre AS film_titre, f.duree AS film_duree, " +
-                "r.id AS realisateur_id, r.nom AS realisateur_nom, r.prenom AS realisateur_prenom, " +
-                "r.date_naissance AS realisateur_date_naissance, r.celebre AS realisateur_celebre " +
-                "FROM FILM f " +
-                "LEFT JOIN REALISATEUR r ON f.realisateur_id = r.id " +
-                "WHERE f.id = ?";
-
+        String sql = "SELECT f.id AS film_id, f.titre AS film_titre, f.duree AS film_duree, " +
+                    "r.id AS realisateur_id, r.nom AS realisateur_nom, r.prenom AS realisateur_prenom, " +
+                    "r.date_naissance AS realisateur_date_naissance, r.celebre AS realisateur_celebre " +
+                    "FROM FILM f " +
+                    "LEFT JOIN REALISATEUR r ON f.realisateur_id = r.id " +
+                    "WHERE f.id = ?";
+        
         List<Film> films = jdbcTemplate.query(sql, new FilmRowMapper(), id);
-
-        return films.isEmpty() ? Optional.empty() : Optional.of(films.get(0));
+        if (films.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(films.get(0));
     }
 
     @Override

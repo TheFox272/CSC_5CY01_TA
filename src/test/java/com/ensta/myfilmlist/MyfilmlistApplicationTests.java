@@ -17,13 +17,13 @@ class MyfilmlistApplicationTests {
 //		myFilmListTests.calculerDureeTotaleTest();
 //		myFilmListTests.calculerNoteMoyenneTest();
 //		myFilmListTests.updateRealisateurCelebresTest();
-//		myFilmListTests.findAllFilmsTest();
+		// myFilmListTests.findAllFilmsTest();
 //		myFilmListTests.createFilmTest();
 //		myFilmListTests.findFilmByIdTest();
 //		myFilmListTests.deleteFilmByIdTest();
 //		myFilmListTests.updateRealisateurCelebre();
 //		myFilmListTests.createFilmTest();
-		myFilmListTests.findFilmByIdTest();
+		// myFilmListTests.findFilmByIdTest();
 		myFilmListTests.deleteFilmByIdTest();
 	}
 
