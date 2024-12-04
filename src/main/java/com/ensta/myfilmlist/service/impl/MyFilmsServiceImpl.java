@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.ensta.myfilmlist.dao.FilmDAO;
 import com.ensta.myfilmlist.dao.RealisateurDAO;
 import com.ensta.myfilmlist.dao.impl.JdbcFilmDAO;
@@ -23,12 +26,16 @@ import com.ensta.myfilmlist.service.MyFilmsService;
 
 //********************************************************************************************************************
 
+@Service
 public class MyFilmsServiceImpl implements MyFilmsService {
 
     // Constantes
     public static final int NB_FILMS_MIN_REALISATEUR_CELEBRE = 3;
-    public FilmDAO filmDAO;
-    public RealisateurDAO realisateurDAO;
+
+    @Autowired
+    private FilmDAO filmDAO;
+    @Autowired
+    private RealisateurDAO realisateurDAO;
 
 
     public MyFilmsServiceImpl() {

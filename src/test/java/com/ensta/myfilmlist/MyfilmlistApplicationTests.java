@@ -13,17 +13,12 @@ class MyfilmlistApplicationTests {
 	@Test
 	void testMyFilmList() {
 		MyfilmlistTests myFilmListTests = new MyfilmlistTests();
-//		myFilmListTests.updateRealisateurCelebreTest();
-//		myFilmListTests.calculerDureeTotaleTest();
-//		myFilmListTests.calculerNoteMoyenneTest();
-//		myFilmListTests.updateRealisateurCelebresTest();
-		// myFilmListTests.findAllFilmsTest();
-//		myFilmListTests.createFilmTest();
-//		myFilmListTests.findFilmByIdTest();
-//		myFilmListTests.deleteFilmByIdTest();
-//		myFilmListTests.updateRealisateurCelebre();
-//		myFilmListTests.createFilmTest();
-		// myFilmListTests.findFilmByIdTest();
+		myFilmListTests.updateRealisateurCelebreTest();
+		myFilmListTests.calculerDureeTotaleTest();
+		myFilmListTests.calculerNoteMoyenneTest();
+		myFilmListTests.findAllFilmsTest();
+		myFilmListTests.createFilmTest();
+		myFilmListTests.findFilmByIdTest();
 		myFilmListTests.deleteFilmByIdTest();
 	}
 
