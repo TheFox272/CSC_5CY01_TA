@@ -85,12 +85,14 @@ public class JdbcFilmDAO implements FilmDAO {
                 "FROM FILM f " +
                 "LEFT JOIN REALISATEUR r ON f.realisateur_id = r.id";
 
+
+
         return jdbcTemplate.query(sql, new FilmRowMapper());
     }
 
     @Override
     public Film save(Film film) {
-        String CREATE_FILM_QUERY = "INSERT INTO FILM (titre, duree) VALUES (?, ?)";
+        String CREATE_FILM_QUERY = "INSERT INTO FILM (titre, duree, realisateur_id) VALUES (?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         PreparedStatementCreator creator = conn -> {
             PreparedStatement statement = conn.prepareStatement(
@@ -99,6 +101,7 @@ public class JdbcFilmDAO implements FilmDAO {
             );
             statement.setString(1, film.getTitre());
             statement.setInt(2, film.getDuree());
+            statement.setLong(3, film.getRealisateur().getId());
             return statement;
         };
         // ici insertion
