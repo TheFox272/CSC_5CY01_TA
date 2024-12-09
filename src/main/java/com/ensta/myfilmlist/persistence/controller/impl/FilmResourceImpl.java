@@ -14,6 +14,7 @@ import com.ensta.myfilmlist.exception.ControllerException;
 import com.ensta.myfilmlist.exception.ServiceException;
 import com.ensta.myfilmlist.persistence.controller.FilmResource;
 import com.ensta.myfilmlist.service.MyFilmsService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/film")
@@ -26,6 +27,7 @@ public class FilmResourceImpl implements FilmResource {
         this.filmService = filmService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public ResponseEntity<List<FilmDTO>> getAllFilms() throws ControllerException{
         try {
