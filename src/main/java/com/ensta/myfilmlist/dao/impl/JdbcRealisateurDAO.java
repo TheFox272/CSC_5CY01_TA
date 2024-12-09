@@ -1,16 +1,23 @@
 package com.ensta.myfilmlist.dao.impl;
 import com.ensta.myfilmlist.dao.RealisateurDAO;
 import com.ensta.myfilmlist.model.Realisateur;
+
 import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
+
 import com.ensta.myfilmlist.persistence.ConnectionManager;
+
 import java.util.Optional;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Repository
 public class JdbcRealisateurDAO implements RealisateurDAO{
@@ -21,8 +28,12 @@ public class JdbcRealisateurDAO implements RealisateurDAO{
      */
 
 // attributs
-    private JdbcTemplate jdbcTemplate =
-        ConnectionManager.getJdbcTemplate();
+    //private JdbcTemplate jdbcTemplate =
+    //    ConnectionManager.getJdbcTemplate();
+    
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
 
     // Le mapping permet de créer des objets Réalisateur à partir du résulta de la query
     private final RowMapper<Realisateur> realisateurRowMapper = new RowMapper<>() {
