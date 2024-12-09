@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +37,17 @@ public class FilmResourceImpl implements FilmResource {
             throw new ControllerException(e);
         }
 
+    }
+
+    @GetMapping("/{id}") // Mapping pour une URL de type /film/{id}
+    public ResponseEntity<FilmDTO> getFilmById(@PathVariable("id") long id) throws ControllerException{
+        try {
+            FilmDTO responseFilm = filmService.findFilmById(id);
+            if (responseFilm == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseFilm);
+            return ResponseEntity.status(HttpStatus.OK).body(responseFilm);
+        } catch (ServiceException e) {
+            throw new ControllerException(e);
+        }
     }
 
 

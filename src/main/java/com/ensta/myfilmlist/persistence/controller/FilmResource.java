@@ -9,4 +9,5 @@ import com.ensta.myfilmlist.exception.ControllerException;
 
 public interface FilmResource {
     public ResponseEntity<List<FilmDTO>> getAllFilms() throws ControllerException;
+    public ResponseEntity<FilmDTO> getFilmById(long id) throws ControllerException;
 }
