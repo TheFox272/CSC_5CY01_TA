@@ -1,5 +1,6 @@
 package com.ensta.myfilmlist.service.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -167,9 +168,8 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             film.setDuree(filmForm.getDuree());
             film.setRealisateur(realisateur);
 
-            List<Film> ancienneListeFilm = realisateur.getFilmRealises() ;
+            List<Film> ancienneListeFilm = new ArrayList<>(realisateur.getFilmRealises());
             ancienneListeFilm.add(film);
-
             realisateur.setFilmRealises(ancienneListeFilm);
 
             filmDAO.save(film);
