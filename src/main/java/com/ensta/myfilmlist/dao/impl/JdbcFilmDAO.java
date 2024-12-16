@@ -18,6 +18,8 @@ import org.springframework.stereotype.Repository;
 import com.ensta.myfilmlist.dao.FilmDAO;
 import com.ensta.myfilmlist.model.Film;
 import com.ensta.myfilmlist.model.Realisateur;
+import com.ensta.myfilmlist.persistence.ConnectionManager;
+
 
 @Repository
 public class JdbcFilmDAO implements FilmDAO {
@@ -27,7 +29,7 @@ public class JdbcFilmDAO implements FilmDAO {
     //private JdbcTemplate jdbcTemplate =
     //        ConnectionManager.getJdbcTemplate();
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate = ConnectionManager.getJdbcTemplate();
 
 
 /*
