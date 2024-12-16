@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.ensta.myfilmlist.dto.FilmDTO;
 import com.ensta.myfilmlist.exception.ControllerException;
+import com.ensta.myfilmlist.form.FilmForm;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,4 +31,5 @@ public interface FilmResource {
 
     public ResponseEntity<List<FilmDTO>> getAllFilms() throws ControllerException;
     public ResponseEntity<FilmDTO> getFilmById(long id) throws ControllerException;
+    public ResponseEntity<FilmDTO> createFilm(FilmForm filmForm) throws ControllerException; 
 }
