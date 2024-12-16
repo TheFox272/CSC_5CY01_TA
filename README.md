@@ -5,7 +5,7 @@ Site de Films Star Wars. Equipe : Blandine, Fabien, Ghislain, Laura
 
 ## Setup
 
-Il faut lancer cette commande à la racine du projet juste après avoir cloner le répertoire github :
+Il faut lancer cette commande à la racine du projet juste après avoir cloné le répertoire github :
 ```
 mvn -N io.takari:maven:wrapper
 ```
