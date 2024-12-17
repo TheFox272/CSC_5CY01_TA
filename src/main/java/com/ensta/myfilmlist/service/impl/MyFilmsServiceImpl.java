@@ -23,6 +23,7 @@ import com.ensta.myfilmlist.model.Film;
 import com.ensta.myfilmlist.model.Realisateur;
 import com.ensta.myfilmlist.service.MyFilmsService;
 
+import javax.transaction.Transactional;
 
 
 //********************************************************************************************************************
@@ -44,6 +45,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
         this.realisateurDAO = new JdbcRealisateurDAO();
     }
 
+    @Transactional
     @Override
     public Realisateur updateRealisateurCelebre(Realisateur realisateur) throws ServiceException {
         // Realisateur non null
@@ -124,7 +126,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
 
         // return noteMoyenne;
     }
-
+    @Transactional
     @Override
     public List<Realisateur> updateRealisateurCelebres(List<Realisateur> realisateurs) throws ServiceException {
         // Liste des réalisateurs non null
@@ -157,6 +159,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             throw new ServiceException("Problème lors de la récupération", e);
         }
     }
+    @Transactional
     @Override
     public FilmDTO createFilm(FilmForm filmForm) throws ServiceException {
         try {
@@ -214,9 +217,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             throw new ServiceException("Erreur lors de la récupération du film", e);
         }
     }
-
-
-
+    @Transactional
     @Override
     public void deleteFilm(long id) throws ServiceException{
         try {
