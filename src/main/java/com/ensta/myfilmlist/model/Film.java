@@ -60,5 +60,6 @@ public class Film {
 	}
 
 
+	public String toString(){return titre;}
 
 }
