@@ -148,6 +148,5 @@ public class JdbcFilmDAO implements FilmDAO {
         return jdbcTemplate.query(sql, new FilmRowMapper(), realisateurId);
     }
 
-
 }
 

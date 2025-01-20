@@ -17,4 +17,6 @@ public interface RealisateurDAO {
     Realisateur findByNomAndPrenom(String nom, String prenom) throws EmptyResultDataAccessException, RuntimeException;
     Optional<Realisateur> findById(long id);
     Realisateur update(Realisateur realisateur);
+    Realisateur save(Realisateur realisateur);
+
 }

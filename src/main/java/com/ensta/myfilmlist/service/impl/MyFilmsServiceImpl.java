@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.ensta.myfilmlist.form.RealisateurForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,8 @@ import com.ensta.myfilmlist.mapper.RealisateurMapper;
 import com.ensta.myfilmlist.model.Film;
 import com.ensta.myfilmlist.model.Realisateur;
 import com.ensta.myfilmlist.service.MyFilmsService;
+
+import javax.transaction.Transactional;
 
 
 //********************************************************************************************************************
@@ -43,6 +46,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
         this.realisateurDAO = new JdbcRealisateurDAO();
     }
 
+    @Transactional
     @Override
     public Realisateur updateRealisateurCelebre(Realisateur realisateur) throws ServiceException {
         // Realisateur non null
@@ -125,7 +129,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
 
         // return noteMoyenne;
     }
-
+    @Transactional
     @Override
     public List<Realisateur> updateRealisateurCelebres(List<Realisateur> realisateurs) throws ServiceException {
         // Liste des réalisateurs non null
@@ -158,7 +162,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             throw new ServiceException("Problème lors de la récupération", e);
         }
     }
-
+    @Transactional
     @Override
     public FilmDTO createFilm(FilmForm filmForm) throws ServiceException {
         try {
@@ -194,6 +198,30 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             throw new ServiceException("Erreur lors de la création du film", e);
         }
     }
+
+    @Transactional
+    @Override
+    public RealisateurDTO createRealisateur(RealisateurForm realisateurForm) throws ServiceException {
+        try {
+            // Création d'un nouvel objet Realisateur à partir du formulaire
+            Realisateur realisateur = new Realisateur();
+            realisateur.setNom(realisateurForm.getNom());
+            realisateur.setPrenom(realisateurForm.getPrenom());
+            realisateur.setDateNaissance(realisateurForm.getDateNaissance());
+            realisateur.setFilmRealises(new ArrayList<>()); // Initialiser la liste des films réalisés
+
+            // Sauvegarde dans la base de données
+            realisateurDAO.save(realisateur);
+
+            // Conversion en DTO pour retourner le résultat
+            return RealisateurMapper.convertRealisateurToRealisateurDTO(realisateur);
+
+        } catch (Exception e) {
+            // Gestion des erreurs avec une exception personnalisée
+            throw new ServiceException("Erreur lors de la création du réalisateur", e);
+        }
+    }
+
     @Override
     public List<RealisateurDTO> findAllRealisateurs() throws ServiceException {
         try {
@@ -229,8 +257,23 @@ public class MyFilmsServiceImpl implements MyFilmsService {
         }
     }
 
+    @Transactional
+    @Override
+    public RealisateurDTO findRealisateurById(long id) throws ServiceException {
+        try {
+            Realisateur realisateur = this.realisateurDAO.findById(id)
+                    .orElse(null); // Gestion de l'Optional pour un résultat potentiellement absent
 
+            if (realisateur == null) {
+                return null;
+            }
+            return RealisateurMapper.convertRealisateurToRealisateurDTO(realisateur);
+        } catch (Exception e) {
+            throw new ServiceException("Erreur lors de la récupération du réalisateur par ID", e);
+        }
+    }
 
+    @Transactional
     @Override
     public void deleteFilm(long id) throws ServiceException{
             try {

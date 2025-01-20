@@ -1,13 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import Header from './Header';
-import FilmList from './FilmList';
+import FilmContainer from './components/FilmContainer';
+
+//********************************************************************************************************************
 
 function App() {
   return (
     <>
       <Header />
-      <FilmList />
+      <FilmContainer />
     </>
   );
 }
