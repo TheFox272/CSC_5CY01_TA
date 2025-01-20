@@ -43,6 +43,7 @@ public class FilmResourceImpl implements FilmResource {
 
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}") // Mapping pour une URL de type /film/{id}
     public ResponseEntity<FilmDTO> getFilmById(@PathVariable("id") long id) throws ControllerException{
         try {
@@ -54,6 +55,7 @@ public class FilmResourceImpl implements FilmResource {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
     public ResponseEntity<FilmDTO> createFilm(@RequestBody FilmForm filmForm) throws ControllerException {
         try {

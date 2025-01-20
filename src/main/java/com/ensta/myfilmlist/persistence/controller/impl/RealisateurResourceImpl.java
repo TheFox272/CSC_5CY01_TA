@@ -46,6 +46,7 @@ public class RealisateurResourceImpl implements RealisateurResource{
 
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}") // Mapping pour une URL de type /realisateur/{id}
     public ResponseEntity<RealisateurDTO> getRealisateurById(@PathVariable("id") long id) throws ControllerException{
         try {
@@ -57,6 +58,7 @@ public class RealisateurResourceImpl implements RealisateurResource{
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
     public ResponseEntity<RealisateurDTO> createRealisateur(@RequestBody RealisateurForm realisateurform) throws ControllerException {
         try {
