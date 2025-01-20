@@ -57,7 +57,9 @@ public class MyFilmsServiceImpl implements MyFilmsService {
         // Liste des films réalisés non null
         List<Film> filmRealises = realisateur.getFilmRealises();
         if (filmRealises == null) {
-            throw new ServiceException("La liste des films réalisés par le réalisateur ne peut pas être null");
+            //throw new ServiceException("La liste des films réalisés par le réalisateur ne peut pas être null");
+            realisateur.setCelebre(false);
+            return realisateur;
         }
 
         // Mise à jour de la célébrité du réalisateur
@@ -145,7 +147,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
                 }
             })
             .filter(realisateur -> realisateur.isCelebre())
-            .toList();
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -164,6 +166,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
     @Override
     public FilmDTO createFilm(FilmForm filmForm) throws ServiceException {
         try {
+
             Realisateur realisateur = realisateurDAO.findById(filmForm.getRealisateurId())
                     .orElseThrow(() -> new ServiceException("Le réalisateur spécifié n'existe pas."));
 
@@ -172,11 +175,22 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             film.setDuree(filmForm.getDuree());
             film.setRealisateur(realisateur);
 
+
+
             List<Film> ancienneListeFilm = new ArrayList<>(realisateur.getFilmRealises());
             ancienneListeFilm.add(film);
             realisateur.setFilmRealises(ancienneListeFilm);
 
+
             filmDAO.save(film);
+            realisateur=updateRealisateurCelebre(realisateur);
+
+            realisateurDAO.update(realisateur);
+
+
+
+
+
 
             return FilmMapper.convertFilmToFilmDTO(film);
 
@@ -262,12 +276,19 @@ public class MyFilmsServiceImpl implements MyFilmsService {
     @Transactional
     @Override
     public void deleteFilm(long id) throws ServiceException{
-        try {
-        Optional<Film> optionalFilm = filmDAO.findById(id);
-        filmDAO.delete(optionalFilm.get());}
-        catch (Exception e) {
+            try {
+
+            Optional<Film> optionalFilm = filmDAO.findById(id);
+            Film film=optionalFilm.get();
+            Realisateur realisateur=film.getRealisateur();
+            filmDAO.delete(film);
+
+
+            updateRealisateurCelebre(realisateur);
+            realisateurDAO.update(realisateur);}
+            catch (Exception e) {
             throw new ServiceException("Erreur lors de la suppression du film", e);
-        }
+            }
     }
 
 

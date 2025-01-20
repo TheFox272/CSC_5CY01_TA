@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 
+import com.ensta.myfilmlist.dao.FilmDAO;
+import com.ensta.myfilmlist.model.Film;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -37,20 +39,27 @@ public class JdbcRealisateurDAO implements RealisateurDAO{
     @Autowired
     private JdbcTemplate jdbcTemplate = ConnectionManager.getJdbcTemplate();
 
+    private FilmDAO filmDAO;
+
+    public JdbcRealisateurDAO() {
+        this.filmDAO = new JdbcFilmDAO();
+    }
+
 
     // Le mapping permet de créer des objets Réalisateur à partir du résulta de la query
     private final RowMapper<Realisateur> realisateurRowMapper = new RowMapper<>() {
         @Override
         public Realisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
             Realisateur realisateur = new Realisateur();
-            realisateur.setId(rs.getLong("id"));
+            long id = rs.getLong("id");
+            realisateur.setId(id);
             realisateur.setNom(rs.getString("nom"));
             realisateur.setPrenom(rs.getString("prenom"));
             realisateur.setDateNaissance(rs.getDate("date_naissance").toLocalDate());
             realisateur.setCelebre(rs.getBoolean("celebre"));
 
             // La liste des films devra être chargée séparément (pas incluse ici)
-            realisateur.setFilmRealises(List.of()); // Placeholder pour les films : réservé temporairement pour ajouter la liste de films
+            realisateur.setFilmRealises(filmDAO.findByRealisateurId(id)); // Placeholder pour les films : réservé temporairement pour ajouter la liste de films
             return realisateur;
         }
     };
@@ -94,6 +103,28 @@ public class JdbcRealisateurDAO implements RealisateurDAO{
             return Optional.empty(); // Aucun réalisateur trouvé
         }
     }
+
+
+    public Realisateur update(Realisateur realisateur){
+        Realisateur UpdatedRealisateur=findById(realisateur.getId()).get();
+        // le .get() permet de récupérer le réalisateur s'il en trouve un dans l'optionnel et fait une erreur sinon
+        UpdatedRealisateur.setNom(realisateur.getNom());
+        UpdatedRealisateur.setPrenom(realisateur.getPrenom());
+        UpdatedRealisateur.setDateNaissance(realisateur.getDateNaissance());
+        UpdatedRealisateur.setCelebre(realisateur.isCelebre());
+        UpdatedRealisateur.setFilmRealises(realisateur.getFilmRealises());
+        UpdatedRealisateur.setDateNaissance(realisateur.getDateNaissance());
+
+        jdbcTemplate.update("UPDATE REALISATEUR SET NOM =?, PRENOM =? ,DATE_NAISSANCE = ?, CELEBRE=?  WHERE id = ?",
+                realisateur.getNom(),
+                realisateur.getPrenom(),
+                realisateur.getDateNaissance(),
+                realisateur.isCelebre(),
+                realisateur.getId()
+        );
+        return UpdatedRealisateur;
+        }
+
     @Override
     public Realisateur save(Realisateur realisateur) {
         String CREATE_REALISATEUR_QUERY = "INSERT INTO REALISATEUR (nom, prenom, date_naissance, celebre) VALUES (?, ?, ?, ?)";
@@ -119,4 +150,6 @@ public class JdbcRealisateurDAO implements RealisateurDAO{
         return realisateur;
     }
 
+
 }
+

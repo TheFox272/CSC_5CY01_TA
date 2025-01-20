@@ -90,7 +90,8 @@ public class Realisateur {
                 ", dateNaissance=" + dateNaissance +
                 ", filmRealises=" + filmRealises +
                 ", celebre=" + celebre +
-                '}';
+                ", filmlist" + filmRealises+
+        '}';
     }
 }
 
