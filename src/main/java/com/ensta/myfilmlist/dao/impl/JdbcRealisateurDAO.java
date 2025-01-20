@@ -1,11 +1,16 @@
 package com.ensta.myfilmlist.dao.impl;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -89,4 +94,29 @@ public class JdbcRealisateurDAO implements RealisateurDAO{
             return Optional.empty(); // Aucun réalisateur trouvé
         }
     }
+    @Override
+    public Realisateur save(Realisateur realisateur) {
+        String CREATE_REALISATEUR_QUERY = "INSERT INTO REALISATEUR (nom, prenom, date_naissance, celebre) VALUES (?, ?, ?, ?)";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        PreparedStatementCreator creator = conn -> {
+            PreparedStatement statement = conn.prepareStatement(
+                    CREATE_REALISATEUR_QUERY,
+                    Statement.RETURN_GENERATED_KEYS
+            );
+            statement.setString(1, realisateur.getNom());
+            statement.setString(2, realisateur.getPrenom());
+            statement.setDate(3, java.sql.Date.valueOf(realisateur.getDateNaissance()));
+            statement.setBoolean(4, realisateur.isCelebre());
+            return statement;
+        };
+
+        // Exécute la requête d'insertion
+        jdbcTemplate.update(creator, keyHolder);
+
+        // Récupère l'ID généré et l'affecte au réalisateur
+        realisateur.setId(keyHolder.getKey().longValue());
+
+        return realisateur;
     }
+
+}
