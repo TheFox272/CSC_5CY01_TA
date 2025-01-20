@@ -295,41 +295,21 @@ public class MyfilmlistTests {
 			RealisateurDTO realisateurDTO = myFilmsService.findRealisateurByNomAndPrenom("Cameron", "James");
 			// Attendue : false
 			System.out.println("James Cameron est-il celebre ? " + realisateurDTO.isCelebre());
-			//moi
-			 List<FilmDTO> films = myFilmsService.findAllFilms();
-			 System.out.println("Combien y a-t-il de films ? " + films.size());
-			// moi
+
 			FilmForm titanic = new FilmForm();
 			titanic.setTitre("Titanic");
 			titanic.setDuree(195);
 			titanic.setRealisateurId(realisateurDTO.getId());
 			myFilmsService.createFilm(titanic);
-			// narnia
-			FilmForm narnia = new FilmForm();
-			narnia.setTitre("Narnia");
-			narnia.setDuree(95);
-			narnia.setRealisateurId(realisateurDTO.getId());
-			myFilmsService.createFilm(narnia);
 
-			//System.out.println(" les films de james" + FilmDAO.findByRealisateurId(realisateurDTO.getId()));
-			System.out.println(" il est celebre " + realisateurDTO.isCelebre());
 
-			//
-			List<FilmDTO> films1 = myFilmsService.findAllFilms();
-			System.out.println("Combien y a-t-il de films ? " + films1.size());
-			//
 			FilmForm leHobbit = new FilmForm();
 			leHobbit.setTitre("Le Hobbit : Un voyage inattendu");
 			leHobbit.setDuree(169);
 			leHobbit.setRealisateurId(realisateurDTO.getId());
 
 			FilmDTO leHobbitDTO = myFilmsService.createFilm(leHobbit);
-			// test
-			List<FilmDTO> films2 = myFilmsService.findAllFilms();
-			System.out.println("Combien y a-t-il de films ? " + films2.size());
 
-
-			// test
 			System.out.println("James Cameron a realise deux nouveaux films");
 			realisateurDTO = myFilmsService.findRealisateurByNomAndPrenom("Cameron", "James");
 

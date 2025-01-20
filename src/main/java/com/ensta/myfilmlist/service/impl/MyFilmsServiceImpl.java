@@ -162,6 +162,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
     @Override
     public FilmDTO createFilm(FilmForm filmForm) throws ServiceException {
         try {
+
             Realisateur realisateur = realisateurDAO.findById(filmForm.getRealisateurId())
                     .orElseThrow(() -> new ServiceException("Le réalisateur spécifié n'existe pas."));
 
@@ -170,13 +171,12 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             film.setDuree(filmForm.getDuree());
             film.setRealisateur(realisateur);
 
-            System.out.println(realisateur.getFilmRealises());
+
 
             List<Film> ancienneListeFilm = new ArrayList<>(realisateur.getFilmRealises());
             ancienneListeFilm.add(film);
             realisateur.setFilmRealises(ancienneListeFilm);
-            // test
-            System.out.println(realisateur.getFilmRealises());
+
 
             filmDAO.save(film);
             realisateur=updateRealisateurCelebre(realisateur);
@@ -240,7 +240,9 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             Realisateur realisateur=film.getRealisateur();
             filmDAO.delete(film);
 
-            updateRealisateurCelebre(realisateur);}
+
+            updateRealisateurCelebre(realisateur);
+            realisateurDAO.update(realisateur);}
             catch (Exception e) {
             throw new ServiceException("Erreur lors de la suppression du film", e);
             }
