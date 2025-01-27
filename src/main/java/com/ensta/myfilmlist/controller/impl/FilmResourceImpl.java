@@ -1,4 +1,4 @@
-package com.ensta.myfilmlist.persistence.controller.impl;
+package com.ensta.myfilmlist.controller.impl;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import com.ensta.myfilmlist.dto.FilmDTO;
 import com.ensta.myfilmlist.exception.ControllerException;
 import com.ensta.myfilmlist.exception.ServiceException;
 import com.ensta.myfilmlist.form.FilmForm;
-import com.ensta.myfilmlist.persistence.controller.FilmResource;
+import com.ensta.myfilmlist.controller.FilmResource;
 import com.ensta.myfilmlist.service.MyFilmsService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;

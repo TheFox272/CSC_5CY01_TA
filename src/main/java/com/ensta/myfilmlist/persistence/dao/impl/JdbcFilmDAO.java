@@ -1,4 +1,4 @@
-package com.ensta.myfilmlist.dao.impl;
+package com.ensta.myfilmlist.persistence.dao.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.ensta.myfilmlist.dao.FilmDAO;
+import com.ensta.myfilmlist.persistence.dao.FilmDAO;
 import com.ensta.myfilmlist.model.Film;
 import com.ensta.myfilmlist.model.Realisateur;
 import com.ensta.myfilmlist.persistence.ConnectionManager;

@@ -1,4 +1,4 @@
-package com.ensta.myfilmlist.dao;
+package com.ensta.myfilmlist.persistence.dao;
 
 import java.util.List;
 import java.util.Optional;

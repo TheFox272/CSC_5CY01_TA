@@ -1,4 +1,4 @@
-package com.ensta.myfilmlist.persistence.controller.impl;
+package com.ensta.myfilmlist.controller.impl;
 
 import java.util.List;
 
@@ -13,17 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ensta.myfilmlist.dto.FilmDTO;
 import com.ensta.myfilmlist.exception.ControllerException;
 import com.ensta.myfilmlist.exception.ServiceException;
-import com.ensta.myfilmlist.form.FilmForm;
 import com.ensta.myfilmlist.service.MyFilmsService;
 import com.ensta.myfilmlist.dto.RealisateurDTO;
 
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
-import com.ensta.myfilmlist.persistence.controller.RealisateurResource;
+import com.ensta.myfilmlist.controller.RealisateurResource;
 
 @RestController
 @RequestMapping("/realisateur")
