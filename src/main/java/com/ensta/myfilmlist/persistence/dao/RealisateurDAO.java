@@ -1,4 +1,4 @@
-package com.ensta.myfilmlist.dao;
+package com.ensta.myfilmlist.persistence.dao;
 
 import com.ensta.myfilmlist.model.Film;
 import com.ensta.myfilmlist.model.Realisateur;

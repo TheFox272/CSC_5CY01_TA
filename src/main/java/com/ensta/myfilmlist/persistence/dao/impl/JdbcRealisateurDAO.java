@@ -1,11 +1,10 @@
-package com.ensta.myfilmlist.dao.impl;
+package com.ensta.myfilmlist.persistence.dao.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 
-import com.ensta.myfilmlist.dao.FilmDAO;
-import com.ensta.myfilmlist.model.Film;
+import com.ensta.myfilmlist.persistence.dao.FilmDAO;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -20,8 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.ensta.myfilmlist.persistence.ConnectionManager;
-import com.ensta.myfilmlist.persistence.ConnectionManager;
-import com.ensta.myfilmlist.dao.RealisateurDAO;
+import com.ensta.myfilmlist.persistence.dao.RealisateurDAO;
 import com.ensta.myfilmlist.model.Realisateur;
 
 @Repository

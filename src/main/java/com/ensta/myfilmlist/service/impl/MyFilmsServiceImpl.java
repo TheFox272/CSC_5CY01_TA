@@ -10,10 +10,10 @@ import com.ensta.myfilmlist.form.RealisateurForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ensta.myfilmlist.dao.FilmDAO;
-import com.ensta.myfilmlist.dao.RealisateurDAO;
-import com.ensta.myfilmlist.dao.impl.JdbcFilmDAO;
-import com.ensta.myfilmlist.dao.impl.JdbcRealisateurDAO;
+import com.ensta.myfilmlist.persistence.dao.FilmDAO;
+import com.ensta.myfilmlist.persistence.dao.RealisateurDAO;
+import com.ensta.myfilmlist.persistence.dao.impl.JdbcFilmDAO;
+import com.ensta.myfilmlist.persistence.dao.impl.JdbcRealisateurDAO;
 import com.ensta.myfilmlist.dto.FilmDTO;
 import com.ensta.myfilmlist.dto.RealisateurDTO;
 import com.ensta.myfilmlist.exception.ServiceException;
