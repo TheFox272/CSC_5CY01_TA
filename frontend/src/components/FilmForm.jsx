@@ -35,6 +35,7 @@ export default function FilmForm(props) {
                 boxShadow: 3, // Ajoute une ombre
             }}
         >
+<<<<<<< HEAD
             <TextField id="titre" label="Titre" variant="outlined" defaultValue={props.film ? props.film.titre : ''} />
             <TextField id="duree" label="Durée" variant="outlined" defaultValue={props.film ? props.film.duree : ''} />
 
@@ -44,6 +45,56 @@ export default function FilmForm(props) {
                 defaultValue={props.film ? props.film.realisateur.id : ''}
                 label="Réalisateur"
                 onChange={props.handleRealisateurChange}
+=======
+            <TextField
+                id="titre"
+                label="Titre"
+                variant="outlined"
+                defaultValue={props.film ? props.film.titre : ""}
+                InputLabelProps={{
+                    style: { color: "white" }, // Couleur du label en blanc
+                }}
+                InputProps={{
+                    style: { color: "white" }, // Couleur du texte saisi en blanc
+                }}
+                sx={{
+                    input: {
+                        color: "white", // Applique la couleur du texte dans l'input
+                    },
+                    label: {
+                        color: "white", // Applique la couleur du label
+                    }
+                }}
+            />
+
+            <TextField
+                id="duree"
+                label="Durée"
+                variant="outlined"
+                defaultValue={props.film ? props.film.duree : ""}
+                InputLabelProps={{
+                    style: { color: "white" }, // Couleur du label en blanc
+                }}
+                InputProps={{
+                    style: { color: "white" }, // Couleur du texte saisi en blanc
+                }}
+                sx={{
+                    input: {
+                        color: "white", // Applique la couleur du texte dans l'input
+                    },
+                    label: {
+                        color: "white", // Applique la couleur du label
+                    }
+                }}
+            />
+
+            <Select
+                labelId="realisateur-label"
+                id="realisateur"
+                defaultValue={props.film ? props.film.realisateur.id : ""}
+                displayEmpty
+                variant="outlined"
+>>>>>>> 9388e7b025ef48420396ce2596c49a932db6d138
                 sx={{
                     color: "white", // Texte du champ Select en blanc
                     ".MuiSelect-icon": {
@@ -54,6 +105,7 @@ export default function FilmForm(props) {
                     },
                 }}
             >
+<<<<<<< HEAD
                 {
                     realisateurs.map((realisateur) => {
                         return <MenuItem key={realisateur.id} value={realisateur.id}>{realisateur.prenom} {realisateur.nom}</MenuItem>
@@ -62,11 +114,29 @@ export default function FilmForm(props) {
             </Select>
 
             <Button variant="contained" color="primary" onClick={props.onSubmit} sx={{
+=======
+                <MenuItem value="" disabled>
+                    Sélectionnez un réalisateur
+                </MenuItem>
+                {realisateurs.map((realisateur) => (
+                    <MenuItem key={realisateur.id} value={realisateur.id}>
+                        {realisateur.prenom} {realisateur.nom}
+                    </MenuItem>
+                ))}
+            </Select>
+
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={props.onSubmit}
+                sx={{
+>>>>>>> 9388e7b025ef48420396ce2596c49a932db6d138
                     backgroundColor: "white", // Fond du bouton en blanc
                     color: "black", // Texte du bouton en noir
                     "&:hover": {
                         backgroundColor: "gray", // Couleur de fond au survol
                     },
+<<<<<<< HEAD
                 }}>
                 {
                     props.film ?
@@ -74,6 +144,11 @@ export default function FilmForm(props) {
                     :
                     "Créer"
                 }
+=======
+                }}
+            >
+                {props.film ? "Editer" : "Créer"}
+>>>>>>> 9388e7b025ef48420396ce2596c49a932db6d138
             </Button>
         </Box>
     );

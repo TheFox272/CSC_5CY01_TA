@@ -69,26 +69,38 @@ export default function FilmCard(props) {
     }
 
     return (
-        <Card variant="outlined">
-            <CardContent>
-                <Typography variant="h5" gutterBottom>
+        <Card className="film-card" variant="outlined">
+            <CardContent className="film-card-content">
+                <Typography 
+                    sx={{
+                        flexGrow: 1,
+                        color: "black", // Couleur du texte en noir
+                        fontFamily: "'Starjedi', sans-serif", // Police Star Jedi
+                    }}
+                >
                     {props.film.titre}
                 </Typography>
-                <Typography variant="body1">
-                        {props.film.duree} minutes
+                <Typography variant="body1" className="film-duration">
+                    <img
+                            src="/SabreLaser.png"
+                            className="saber-image"
+                        />
+                    {props.film.duree} minutes
                 </Typography>
+                <div className="action-buttons">
+                    <IconButton onClick={handleClickOnDeleteButton} color="error">
+                        <DeleteIcon />
+                    </IconButton>
+                    <IconButton onClick={handleClickOnEditButton} color="primary">
+                        <EditIcon />
+                    </IconButton>
+                </div>
                 <Dialog onClose={handleClose} open={open}>
-                    <DialogTitle>Editer un film</DialogTitle>
+                    <DialogTitle className="starjedi-title">Editer un film</DialogTitle>
                     <DialogContent>
                         <FilmForm film={props.film} onSubmit={editFilm} handleRealisateurChange={handleRealisateurChange} />
                     </DialogContent>
                 </Dialog>
-                <IconButton onClick={handleClickOnDeleteButton}>
-                    <DeleteIcon/>
-                </IconButton>
-                <IconButton onClick={handleClickOnEditButton}>
-                    <EditIcon/>
-                </IconButton>
             </CardContent>
         </Card>
     )
