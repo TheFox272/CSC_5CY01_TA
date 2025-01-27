@@ -35,8 +35,42 @@ export default function FilmForm(props) {
                 boxShadow: 3, // Ajoute une ombre
             }}
         >
-            <TextField id="titre" label="Titre" variant="outlined" defaultValue={props.film ? props.film.titre : ''} />
-            <TextField id="duree" label="Durée" variant="outlined" defaultValue={props.film ? props.film.duree : ''} />
+                <TextField
+                    id="titre"
+                    label="Titre"
+                    variant="outlined"
+                    defaultValue={props.film ? props.film.titre : ''}
+                    sx={{
+                        color: "white", // Appliquer la couleur du texte ici
+                        "& .MuiInputLabel-root": {
+                            color: "white", // Appliquer la couleur blanche au label
+                        },
+                        "& .MuiOutlinedInput-root": {
+                            color: "white", // Texte du champ en blanc
+                            "& fieldset": {
+                                borderColor: "white", // Bordure du champ en blanc
+                            },
+                        },
+                    }}
+                />
+                <TextField
+                    id="duree"
+                    label="Durée"
+                    variant="outlined"
+                    defaultValue={props.film ? props.film.duree : ''}
+                    sx={{
+                        color: "white", // Appliquer la couleur du texte ici
+                        "& .MuiInputLabel-root": {
+                            color: "white", // Appliquer la couleur blanche au label
+                        },
+                        "& .MuiOutlinedInput-root": {
+                            color: "white", // Texte du champ en blanc
+                            "& fieldset": {
+                                borderColor: "white", // Bordure du champ en blanc
+                            },
+                        },
+                    }}
+                />
 
             <Select
                 labelId="realisateur"
@@ -46,17 +80,25 @@ export default function FilmForm(props) {
                 onChange={props.handleRealisateurChange}
                 sx={{
                     color: "white", // Texte du champ Select en blanc
-                    ".MuiSelect-icon": {
+                    "& .MuiSelect-icon": {
                         color: "white", // Couleur de l'icône déroulante
                     },
-                    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "white", // Bordure du select en blanc
+                    "& .MuiOutlinedInput-root": {
+                        color: "white", // Texte du champ en blanc
+                        "& fieldset": {
+                            borderColor: "white", // Bordure du champ en blanc
+                        },
+                    },
+                    "& .MuiInputLabel-root": {
+                        color: "white", // Label "Réalisateur" en blanc
                     },
                 }}
             >
                 {
                     realisateurs.map((realisateur) => {
-                        return <MenuItem key={realisateur.id} value={realisateur.id}>{realisateur.prenom} {realisateur.nom}</MenuItem>
+                        return <MenuItem key={realisateur.id} value={realisateur.id} sx={{ color: "black" }}>
+                            {realisateur.prenom} {realisateur.nom}
+                        </MenuItem>
                     })
                 }
             </Select>
