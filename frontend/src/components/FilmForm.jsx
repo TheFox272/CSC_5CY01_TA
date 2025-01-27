@@ -16,36 +16,6 @@ export default function FilmForm(props) {
     }, []);
 
     return (
-<<<<<<< HEAD
-        <div>
-            <TextField id="titre" label="Titre" variant="outlined" defaultValue={props.film ? props.film.titre : ''} />
-            <TextField id="duree" label="Durée" variant="outlined" defaultValue={props.film ? props.film.duree : ''} />
-
-            <Select
-                labelId="realisateur"
-                id="realisateur"
-                defaultValue={props.film ? props.film.realisateur.id : ''}
-                label="Réalisateur"
-                onChange={props.handleRealisateurChange}
-            >
-                {
-                    realisateurs.map((realisateur) => {
-                        return <MenuItem key={realisateur.id} value={realisateur.id}>{realisateur.prenom} {realisateur.nom}</MenuItem>
-                    })
-                }
-            </Select>
-
-            <Button variant="contained" color="primary" onClick={props.onSubmit}>
-                {
-                    props.film ?
-                    "Editer"
-                    :
-                    "Créer"
-                }
-            </Button>
-        </div>
-    )
-=======
         <Box
             component="form"
             sx={{
@@ -65,54 +35,15 @@ export default function FilmForm(props) {
                 boxShadow: 3, // Ajoute une ombre
             }}
         >
-            <TextField
-                id="titre"
-                label="Titre"
-                variant="outlined"
-                defaultValue={props.film ? props.film.titre : ""}
-                InputLabelProps={{
-                    style: { color: "white" }, // Couleur du label en blanc
-                }}
-                InputProps={{
-                    style: { color: "white" }, // Couleur du texte saisi en blanc
-                }}
-                sx={{
-                    input: {
-                        color: "white", // Applique la couleur du texte dans l'input
-                    },
-                    label: {
-                        color: "white", // Applique la couleur du label
-                    }
-                }}
-            />
-
-            <TextField
-                id="duree"
-                label="Durée"
-                variant="outlined"
-                defaultValue={props.film ? props.film.duree : ""}
-                InputLabelProps={{
-                    style: { color: "white" }, // Couleur du label en blanc
-                }}
-                InputProps={{
-                    style: { color: "white" }, // Couleur du texte saisi en blanc
-                }}
-                sx={{
-                    input: {
-                        color: "white", // Applique la couleur du texte dans l'input
-                    },
-                    label: {
-                        color: "white", // Applique la couleur du label
-                    }
-                }}
-            />
+            <TextField id="titre" label="Titre" variant="outlined" defaultValue={props.film ? props.film.titre : ''} />
+            <TextField id="duree" label="Durée" variant="outlined" defaultValue={props.film ? props.film.duree : ''} />
 
             <Select
-                labelId="realisateur-label"
+                labelId="realisateur"
                 id="realisateur"
-                defaultValue={props.film ? props.film.realisateur.id : ""}
-                displayEmpty
-                variant="outlined"
+                defaultValue={props.film ? props.film.realisateur.id : ''}
+                label="Réalisateur"
+                onChange={props.handleRealisateurChange}
                 sx={{
                     color: "white", // Texte du champ Select en blanc
                     ".MuiSelect-icon": {
@@ -123,32 +54,28 @@ export default function FilmForm(props) {
                     },
                 }}
             >
-                <MenuItem value="" disabled>
-                    Sélectionnez un réalisateur
-                </MenuItem>
-                {realisateurs.map((realisateur) => (
-                    <MenuItem key={realisateur.id} value={realisateur.id}>
-                        {realisateur.prenom} {realisateur.nom}
-                    </MenuItem>
-                ))}
+                {
+                    realisateurs.map((realisateur) => {
+                        return <MenuItem key={realisateur.id} value={realisateur.id}>{realisateur.prenom} {realisateur.nom}</MenuItem>
+                    })
+                }
             </Select>
 
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={props.onSubmit}
-                sx={{
+            <Button variant="contained" color="primary" onClick={props.onSubmit} sx={{
                     backgroundColor: "white", // Fond du bouton en blanc
                     color: "black", // Texte du bouton en noir
                     "&:hover": {
                         backgroundColor: "gray", // Couleur de fond au survol
                     },
-                }}
-            >
-                {props.film ? "Editer" : "Créer"}
+                }}>
+                {
+                    props.film ?
+                    "Editer"
+                    :
+                    "Créer"
+                }
             </Button>
         </Box>
     );
->>>>>>> b51fd293e3e8c2faae8563846899aaee97eb51ed
 }
 
