@@ -67,6 +67,7 @@ public class FilmResourceImpl implements FilmResource {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{id}")
     public ResponseEntity<FilmDTO> deleteFilm(@PathVariable("id") long id) throws ControllerException{
         try {
