@@ -39,5 +39,7 @@ export function getAllRealisateur(){
 }
     
 
-
+export function postRealisateur(realisateur){
+	return axios.post(REALISATEUR_URI, realisateur);
+}
 
