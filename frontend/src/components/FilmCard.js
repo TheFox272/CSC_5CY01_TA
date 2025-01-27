@@ -15,6 +15,12 @@ import { putFilm, deleteFilm } from '../api/FilmApi';
 
 
 export default function FilmCard(props) {
+    const [selectedRealisateur, setSelectedRealisateur] = useState('');
+    
+    const handleRealisateurChange = (event) => {
+        setSelectedRealisateur(event.target.value);
+    };
+
     const handleClickOnDeleteButton = () => {
         // debug
         console.log('deleteFilm');
@@ -34,12 +40,13 @@ export default function FilmCard(props) {
         // récupérer les valeurs des champs titre, durée et réalisateur
         const titre = document.getElementById('titre').value;
         const duree = document.getElementById('duree').value;
-        const realisateurId = document.getElementById('realisateur').value;
+        const realisateurId = selectedRealisateur;
 
         // créer un objet film
         const film = {
+            id: props.film.id,
             titre: titre,
-            duree: duree,
+            duree: parseInt(duree, 10),
             realisateurId: realisateurId
         }
 
@@ -73,7 +80,7 @@ export default function FilmCard(props) {
                 <Dialog onClose={handleClose} open={open}>
                     <DialogTitle>Editer un film</DialogTitle>
                     <DialogContent>
-                        <FilmForm film={props.film} onSubmit={editFilm} />
+                        <FilmForm film={props.film} onSubmit={editFilm} handleRealisateurChange={handleRealisateurChange} />
                     </DialogContent>
                 </Dialog>
                 <IconButton onClick={handleClickOnDeleteButton}>

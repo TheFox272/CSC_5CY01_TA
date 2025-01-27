@@ -17,46 +17,23 @@ export default function FilmForm(props) {
 
     return (
         <div>
-            
-            {
-                props.film ?
-                <TextField id="titre" label="Titre" variant="outlined" defaultValue={props.film.titre} />
-                :
-                <TextField id="titre" label="Titre" variant="outlined" />
-            }
-            {
-                props.film ?
-                <TextField id="duree" label="Durée" variant="outlined" defaultValue={props.film.duree} />
-                :
-                <TextField id="duree" label="Durée" variant="outlined" />
-            }
-            
-            {
-                props.film ?
-                <Select
-                    labelId="realisateur"
-                    id="realisateur"
-                    defaultValue={props.film.realisateur.id}
-                    label="Réalisateur"
-                >
+            <TextField id="titre" label="Titre" variant="outlined" defaultValue={props.film ? props.film.titre : ''} />
+            <TextField id="duree" label="Durée" variant="outlined" defaultValue={props.film ? props.film.duree : ''} />
+
+            <Select
+                labelId="realisateur"
+                id="realisateur"
+                defaultValue={props.film ? props.film.realisateur.id : ''}
+                label="Réalisateur"
+                onChange={props.handleRealisateurChange}
+            >
                 {
                     realisateurs.map((realisateur) => {
                         return <MenuItem key={realisateur.id} value={realisateur.id}>{realisateur.prenom} {realisateur.nom}</MenuItem>
                     })
                 }
-                </Select>
-                :
-                <Select
-                    labelId="realisateur"
-                    id="realisateur"
-                >
-                {
-                    realisateurs.map((realisateur) => {
-                        return <MenuItem key={realisateur.id} value={realisateur.id}>{realisateur.prenom} {realisateur.nom}</MenuItem>
-                    })
-                }
-                </Select>
-            }
+            </Select>
+
             <Button variant="contained" color="primary" onClick={props.onSubmit}>
                 {
                     props.film ?
@@ -65,7 +42,6 @@ export default function FilmForm(props) {
                     "Créer"
                 }
             </Button>
-
         </div>
     )
 }
