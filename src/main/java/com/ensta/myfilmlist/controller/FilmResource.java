@@ -1,4 +1,4 @@
-package com.ensta.myfilmlist.persistence.controller;
+package com.ensta.myfilmlist.controller;
 
 import java.util.List;
 
@@ -14,6 +14,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
+import javax.validation.Valid;
 
 // L’API s’appelle « Film » et utilise le Tag « Film »
 // Le tag « Film » contient la description de l’API
@@ -31,5 +33,5 @@ public interface FilmResource {
 
     public ResponseEntity<List<FilmDTO>> getAllFilms() throws ControllerException;
     public ResponseEntity<FilmDTO> getFilmById(long id) throws ControllerException;
-    public ResponseEntity<FilmDTO> createFilm(FilmForm filmForm) throws ControllerException; 
+    public ResponseEntity<FilmDTO> createFilm(@Valid FilmForm filmForm) throws ControllerException;
 }

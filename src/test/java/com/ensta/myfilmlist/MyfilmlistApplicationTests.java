@@ -20,6 +20,7 @@ class MyfilmlistApplicationTests {
 		myFilmListTests.createFilmTest();
 		myFilmListTests.findFilmByIdTest();
 		myFilmListTests.deleteFilmByIdTest();
+		myFilmListTests.updateRealisateurCelebre();
 	}
 
 }

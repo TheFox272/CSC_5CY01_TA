@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.ensta.myfilmlist.form.RealisateurForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ensta.myfilmlist.dao.FilmDAO;
-import com.ensta.myfilmlist.dao.RealisateurDAO;
-import com.ensta.myfilmlist.dao.impl.JdbcFilmDAO;
-import com.ensta.myfilmlist.dao.impl.JdbcRealisateurDAO;
+import com.ensta.myfilmlist.persistence.dao.FilmDAO;
+import com.ensta.myfilmlist.persistence.dao.RealisateurDAO;
+import com.ensta.myfilmlist.persistence.dao.impl.JdbcFilmDAO;
+import com.ensta.myfilmlist.persistence.dao.impl.JdbcRealisateurDAO;
 import com.ensta.myfilmlist.dto.FilmDTO;
 import com.ensta.myfilmlist.dto.RealisateurDTO;
 import com.ensta.myfilmlist.exception.ServiceException;
@@ -23,6 +24,7 @@ import com.ensta.myfilmlist.model.Film;
 import com.ensta.myfilmlist.model.Realisateur;
 import com.ensta.myfilmlist.service.MyFilmsService;
 
+import javax.transaction.Transactional;
 
 
 //********************************************************************************************************************
@@ -44,6 +46,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
         this.realisateurDAO = new JdbcRealisateurDAO();
     }
 
+    @Transactional
     @Override
     public Realisateur updateRealisateurCelebre(Realisateur realisateur) throws ServiceException {
         // Realisateur non null
@@ -54,7 +57,9 @@ public class MyFilmsServiceImpl implements MyFilmsService {
         // Liste des films réalisés non null
         List<Film> filmRealises = realisateur.getFilmRealises();
         if (filmRealises == null) {
-            throw new ServiceException("La liste des films réalisés par le réalisateur ne peut pas être null");
+            //throw new ServiceException("La liste des films réalisés par le réalisateur ne peut pas être null");
+            realisateur.setCelebre(false);
+            return realisateur;
         }
 
         // Mise à jour de la célébrité du réalisateur
@@ -124,7 +129,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
 
         // return noteMoyenne;
     }
-
+    @Transactional
     @Override
     public List<Realisateur> updateRealisateurCelebres(List<Realisateur> realisateurs) throws ServiceException {
         // Liste des réalisateurs non null
@@ -142,7 +147,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
                 }
             })
             .filter(realisateur -> realisateur.isCelebre())
-            .toList();
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -157,9 +162,11 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             throw new ServiceException("Problème lors de la récupération", e);
         }
     }
+    @Transactional
     @Override
     public FilmDTO createFilm(FilmForm filmForm) throws ServiceException {
         try {
+
             Realisateur realisateur = realisateurDAO.findById(filmForm.getRealisateurId())
                     .orElseThrow(() -> new ServiceException("Le réalisateur spécifié n'existe pas."));
 
@@ -168,11 +175,22 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             film.setDuree(filmForm.getDuree());
             film.setRealisateur(realisateur);
 
+
+
             List<Film> ancienneListeFilm = new ArrayList<>(realisateur.getFilmRealises());
             ancienneListeFilm.add(film);
             realisateur.setFilmRealises(ancienneListeFilm);
 
+
             filmDAO.save(film);
+            realisateur=updateRealisateurCelebre(realisateur);
+
+            realisateurDAO.update(realisateur);
+
+
+
+
+
 
             return FilmMapper.convertFilmToFilmDTO(film);
 
@@ -180,6 +198,30 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             throw new ServiceException("Erreur lors de la création du film", e);
         }
     }
+
+    @Transactional
+    @Override
+    public RealisateurDTO createRealisateur(RealisateurForm realisateurForm) throws ServiceException {
+        try {
+            // Création d'un nouvel objet Realisateur à partir du formulaire
+            Realisateur realisateur = new Realisateur();
+            realisateur.setNom(realisateurForm.getNom());
+            realisateur.setPrenom(realisateurForm.getPrenom());
+            realisateur.setDateNaissance(realisateurForm.getDateNaissance());
+            realisateur.setFilmRealises(new ArrayList<>()); // Initialiser la liste des films réalisés
+
+            // Sauvegarde dans la base de données
+            realisateurDAO.save(realisateur);
+
+            // Conversion en DTO pour retourner le résultat
+            return RealisateurMapper.convertRealisateurToRealisateurDTO(realisateur);
+
+        } catch (Exception e) {
+            // Gestion des erreurs avec une exception personnalisée
+            throw new ServiceException("Erreur lors de la création du réalisateur", e);
+        }
+    }
+
     @Override
     public List<RealisateurDTO> findAllRealisateurs() throws ServiceException {
         try {
@@ -215,16 +257,38 @@ public class MyFilmsServiceImpl implements MyFilmsService {
         }
     }
 
+    @Transactional
+    @Override
+    public RealisateurDTO findRealisateurById(long id) throws ServiceException {
+        try {
+            Realisateur realisateur = this.realisateurDAO.findById(id)
+                    .orElse(null); // Gestion de l'Optional pour un résultat potentiellement absent
 
+            if (realisateur == null) {
+                return null;
+            }
+            return RealisateurMapper.convertRealisateurToRealisateurDTO(realisateur);
+        } catch (Exception e) {
+            throw new ServiceException("Erreur lors de la récupération du réalisateur par ID", e);
+        }
+    }
 
+    @Transactional
     @Override
     public void deleteFilm(long id) throws ServiceException{
-        try {
-        Optional<Film> optionalFilm = filmDAO.findById(id);
-        filmDAO.delete(optionalFilm.get());}
-        catch (Exception e) {
+            try {
+
+            Optional<Film> optionalFilm = filmDAO.findById(id);
+            Film film=optionalFilm.get();
+            Realisateur realisateur=film.getRealisateur();
+            filmDAO.delete(film);
+
+
+            updateRealisateurCelebre(realisateur);
+            realisateurDAO.update(realisateur);}
+            catch (Exception e) {
             throw new ServiceException("Erreur lors de la suppression du film", e);
-        }
+            }
     }
 
 

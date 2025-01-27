@@ -1,9 +1,11 @@
 package com.ensta.myfilmlist.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.ensta.myfilmlist.dto.RealisateurDTO;
+import com.ensta.myfilmlist.form.RealisateurForm;
 import com.ensta.myfilmlist.model.Realisateur;
 
 /**
@@ -77,4 +79,20 @@ public class RealisateurMapper {
         return realisateur;
     }
      */
+    /**
+     * Convertit un Form en réalisateur.
+     *
+     * @param realisateurForm le Form à convertir
+     * @return Un Réalisateur construit à partir des données du Form.
+     */
+    public static Realisateur convertRealisateurFormToRealisateur(RealisateurForm realisateurForm) {
+        Realisateur realisateur = new Realisateur();
+        realisateur.setNom(realisateurForm.getNom());
+        realisateur.setPrenom(realisateurForm.getPrenom());
+        realisateur.setDateNaissance(realisateurForm.getDateNaissance());
+
+        // L'attribut filmRealises n'est pas inclus ici car il est initialisé à vide lors de la création
+        realisateur.setFilmRealises(new ArrayList<>());
+        return realisateur;
+    }
 }

@@ -1,5 +1,6 @@
-package com.ensta.myfilmlist.dao;
+package com.ensta.myfilmlist.persistence.dao;
 
+import com.ensta.myfilmlist.model.Film;
 import com.ensta.myfilmlist.model.Realisateur;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
@@ -15,5 +16,7 @@ public interface RealisateurDAO {
     List<Realisateur> findAll();
     Realisateur findByNomAndPrenom(String nom, String prenom) throws EmptyResultDataAccessException, RuntimeException;
     Optional<Realisateur> findById(long id);
+    Realisateur update(Realisateur realisateur);
+    Realisateur save(Realisateur realisateur);
 
 }

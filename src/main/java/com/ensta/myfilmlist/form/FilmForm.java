@@ -1,14 +1,20 @@
 package com.ensta.myfilmlist.form;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+
 /**
  * Contient les donnees pour requeter un film.
  */
 public class FilmForm {
-
+	@NotBlank
 	private String titre;
-
+	@Positive
+	@Min(value=1)
 	private int duree;
-
+	@Positive
+	@Min(value=1)
 	private long realisateurId;
 
 	public String getTitre() {
