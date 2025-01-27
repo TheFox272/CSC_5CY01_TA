@@ -37,8 +37,6 @@ export default function FilmContainer() {
             realisateurId: realisateurId
         }
 
-        console.log(film);
-
         // appeler la méthode createFilm de l'API
         postFilm(film).then(reponse => {
             console.log(reponse.data);

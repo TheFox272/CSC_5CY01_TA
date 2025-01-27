@@ -7,7 +7,7 @@ export function getAllFilms(){
 }
 
 export function postFilm(film){
-	return axios.post(FILM_URI, film);
+	return axios.post(FILM_URI + '?realisateurId=' + film.realisateurId + '&titre=' + film.titre + '&duree=' + film.duree);
 }
 
 export function putFilm(film){
