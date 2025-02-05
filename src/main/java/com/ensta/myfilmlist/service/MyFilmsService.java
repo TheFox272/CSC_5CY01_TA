@@ -5,6 +5,7 @@ import java.util.List;
 import com.ensta.myfilmlist.dto.FilmDTO;
 import com.ensta.myfilmlist.dto.RealisateurDTO;
 import com.ensta.myfilmlist.exception.ServiceException;
+import com.ensta.myfilmlist.form.EditFilmForm;
 import com.ensta.myfilmlist.form.FilmForm;
 import com.ensta.myfilmlist.form.RealisateurForm;
 import com.ensta.myfilmlist.model.Film;
@@ -20,7 +21,7 @@ public interface MyFilmsService {
      * @return le réalisateur mis à jour
      */
     Realisateur updateRealisateurCelebre(Realisateur realisateur) throws ServiceException;
-
+    FilmDTO updateFilm(EditFilmForm filmForm) throws ServiceException;
     /*
      * Calcule la durée totale des films
      */

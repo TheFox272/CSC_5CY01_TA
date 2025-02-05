@@ -2,6 +2,8 @@ package com.ensta.myfilmlist.controller;
 
 import java.util.List;
 
+import com.ensta.myfilmlist.form.EditFilmForm;
+import com.ensta.myfilmlist.model.Film;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
@@ -34,4 +36,5 @@ public interface FilmResource {
     public ResponseEntity<List<FilmDTO>> getAllFilms() throws ControllerException;
     public ResponseEntity<FilmDTO> getFilmById(long id) throws ControllerException;
     public ResponseEntity<FilmDTO> createFilm(@Valid FilmForm filmForm) throws ControllerException;
+    public ResponseEntity<FilmDTO> editFilm(@Valid EditFilmForm filmForm) throws ControllerException;
 }
