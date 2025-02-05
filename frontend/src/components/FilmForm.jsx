@@ -94,6 +94,24 @@ export default function FilmForm(props) {
                 }
             </Select>
             </FormControl>
+            <TextField
+                    id="description"
+                    label="Description"
+                    variant="outlined"
+                    defaultValue={props.film ? props.film.description : ''}
+                    sx={{
+                        color: "white", // Appliquer la couleur du texte ici
+                        "& .MuiInputLabel-root": {
+                            color: "white", // Appliquer la couleur blanche au label
+                        },
+                        "& .MuiOutlinedInput-root": {
+                            color: "white", // Texte du champ en blanc
+                            "& fieldset": {
+                                borderColor: "white", // Bordure du champ en blanc
+                            },
+                        },
+                    }}
+                />
             <Button variant="contained" color="primary" onClick={props.onSubmit} sx={{
                     backgroundColor: "white", // Fond du bouton en blanc
                     color: "black", // Texte du bouton en noir

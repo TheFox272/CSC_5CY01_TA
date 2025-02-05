@@ -12,7 +12,8 @@ const mockFilms = [
             dateNaissance: "1961-10-31",
             filmsRealises: 2,
             celebre: false
-        }
+        },
+        description: "Une personne de petite taille se fait des amis grâce à un bijou."
     },
     {
         id: 2,
@@ -25,7 +26,8 @@ const mockFilms = [
             dateNaissance: "1961-10-31",
             filmsRealises: 2,
             celebre: false
-        }
+        },
+        description: "Un apprenti voleur réveille celui qu'il cambriole."
     },
     {
         id: 3,
@@ -38,7 +40,8 @@ const mockFilms = [
             dateNaissance: "1944-05-14",
             filmsRealises: 1,
             celebre: true
-        }
+        },
+        description: "Un mec prend des cours de baston donnés par mini-Shrek."
     }
 ]
 export default mockFilms;
