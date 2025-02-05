@@ -47,13 +47,6 @@ export default function FilmCard(props) {
             description: description
         };
 
-        putFilm(film)
-            .then(response => console.log(response.data))
-            .catch(err => console.log(err));
-    };
-            realisateurId: realisateurId
-        }
-
         // appeler la méthode createFilm de l'API
         putFilm(film).then(reponse => {
             console.log(reponse.data);
