@@ -40,6 +40,8 @@ export default function FilmContainer() {
         // appeler la méthode createFilm de l'API
         postFilm(film).then(reponse => {
             console.log(reponse.data);
+            // actualiser la liste des films
+            setFilms([...films, reponse.data]);
         }).catch(err => {
             console.log(err);
         })

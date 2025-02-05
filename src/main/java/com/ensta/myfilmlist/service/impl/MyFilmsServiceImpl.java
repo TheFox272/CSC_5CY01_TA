@@ -175,22 +175,14 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             film.setDuree(filmForm.getDuree());
             film.setRealisateur(realisateur);
 
-
-
             List<Film> ancienneListeFilm = new ArrayList<>(realisateur.getFilmRealises());
             ancienneListeFilm.add(film);
             realisateur.setFilmRealises(ancienneListeFilm);
-
 
             filmDAO.save(film);
             realisateur=updateRealisateurCelebre(realisateur);
 
             realisateurDAO.update(realisateur);
-
-
-
-
-
 
             return FilmMapper.convertFilmToFilmDTO(film);
 

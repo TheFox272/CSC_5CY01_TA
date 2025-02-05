@@ -53,6 +53,8 @@ export default function FilmCard(props) {
         // appeler la méthode createFilm de l'API
         putFilm(film).then(reponse => {
             console.log(reponse.data);
+            // actualiser la liste des films
+            setFilms([...films, reponse.data]);
         }).catch(err => {
             console.log(err);
         })
