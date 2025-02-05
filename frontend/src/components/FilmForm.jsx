@@ -80,6 +80,7 @@ export default function FilmForm(props) {
                 id="demo-select-small"
                 autoWidth
                 label="Réalisateur"
+                onChange={props.handleRealisateurChange}
                 sx={{ 
                     color: "white", 
                     "& .MuiOutlinedInput-notchedOutline": { borderColor: "white" }
@@ -87,7 +88,7 @@ export default function FilmForm(props) {
             >     
                 {
                     realisateurs.map((realisateur) => {
-                        return <MenuItem key={realisateur.id} value={realisateur.id} sx={{ color: "black" }}>
+                        return <MenuItem key={realisateur.id} value={realisateur.id} sx={{ color: "black" }} >
                             {realisateur.prenom} {realisateur.nom}
                         </MenuItem>
                     })

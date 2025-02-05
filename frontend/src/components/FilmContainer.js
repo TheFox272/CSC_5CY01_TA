@@ -15,7 +15,7 @@ export default function FilmContainer({ className }) {
 
     useEffect(() => {
         getAllFilms().then(reponse => {
-            setFilms(mockFilms);
+            setFilms(mockFilms);  // setFilms(reponse.data);
             console.log(films);
         }).catch(err => {
             console.log(err);

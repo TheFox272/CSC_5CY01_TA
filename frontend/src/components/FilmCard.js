@@ -51,7 +51,7 @@ export default function FilmCard(props) {
         putFilm(film).then(reponse => {
             console.log(reponse.data);
             // actualiser la liste des films
-            setFilms([...films, reponse.data]);
+            // setFilms([...films, reponse.data]);
         }).catch(err => {
             console.log(err);
         })
