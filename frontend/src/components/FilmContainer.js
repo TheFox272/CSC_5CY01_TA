@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { getAllFilms, postFilm } from '../api/FilmApi';
 import FilmForm from './FilmForm';
 import FilmList from './FilmList';
+import mockFilms from '../mock/FilmMock';
 
 //********************************************************************************************************************
-
-export default function FilmContainer() {
+export default function FilmContainer({ className }) {
     const [films, setFilms] = useState([]);
     const [selectedRealisateur, setSelectedRealisateur] = useState('');
     
@@ -15,29 +15,27 @@ export default function FilmContainer() {
 
     useEffect(() => {
         getAllFilms().then(reponse => {
-            setFilms(reponse.data);
+            setFilms(mockFilms);
+            console.log(films);
         }).catch(err => {
             console.log(err);
         })
     }, []);
 
     const createFilm = () => {
-        // debug
         console.log('createFilm');
-
-        // récupérer les valeurs des champs titre, durée et réalisateur
         const titre = document.getElementById('titre').value;
+        const description = document.getElementById('description').value;
         const duree = document.getElementById('duree').value;
         const realisateurId = selectedRealisateur;
 
-        // créer un objet film
         const film = {
-            titre: titre,
+            titre,
             duree: parseInt(duree, 10),
-            realisateurId: realisateurId
+            realisateurId,
+            description
         }
 
-        // appeler la méthode createFilm de l'API
         postFilm(film).then(reponse => {
             console.log(reponse.data);
             // actualiser la liste des films
@@ -48,9 +46,14 @@ export default function FilmContainer() {
     }
 
     return (
-        <>
-            <FilmList films={films} />
+        <div>
+        <div className={`filmcontainer-container ${className}`}>
             <FilmForm onSubmit={createFilm} handleRealisateurChange={handleRealisateurChange} />
-        </>
-    )
+        </div>
+        <div>
+            <FilmList films={films} />
+        </div>
+        </div>
+
+    );
 }

@@ -1,4 +1,6 @@
 import { Button, Select, TextField, MenuItem, Box } from "@mui/material";
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
 import { useState, useEffect } from "react";
 import { getAllRealisateur } from "../api/RealisateurApi";
 
@@ -71,29 +73,18 @@ export default function FilmForm(props) {
                         },
                     }}
                 />
-
+            <FormControl sx={{ width: "100%"}}>
+            <InputLabel id="demo-select-small-label" sx={{ color: "white" }}>Réalisateur</InputLabel>
             <Select
-                labelId="realisateur"
-                id="realisateur"
-                defaultValue={props.film ? props.film.realisateur.id : ''}
+                labelId="Réalisateur"
+                id="demo-select-small"
+                autoWidth
                 label="Réalisateur"
-                onChange={props.handleRealisateurChange}
-                sx={{
-                    color: "white", // Texte du champ Select en blanc
-                    "& .MuiSelect-icon": {
-                        color: "white", // Couleur de l'icône déroulante
-                    },
-                    "& .MuiOutlinedInput-root": {
-                        color: "white", // Texte du champ en blanc
-                        "& fieldset": {
-                            borderColor: "white", // Bordure du champ en blanc
-                        },
-                    },
-                    "& .MuiInputLabel-root": {
-                        color: "white", // Label "Réalisateur" en blanc
-                    },
+                sx={{ 
+                    color: "white", 
+                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "white" }
                 }}
-            >
+            >     
                 {
                     realisateurs.map((realisateur) => {
                         return <MenuItem key={realisateur.id} value={realisateur.id} sx={{ color: "black" }}>
@@ -102,7 +93,25 @@ export default function FilmForm(props) {
                     })
                 }
             </Select>
-
+            </FormControl>
+            <TextField
+                    id="description"
+                    label="Description"
+                    variant="outlined"
+                    defaultValue={props.film ? props.film.description : ''}
+                    sx={{
+                        color: "white", // Appliquer la couleur du texte ici
+                        "& .MuiInputLabel-root": {
+                            color: "white", // Appliquer la couleur blanche au label
+                        },
+                        "& .MuiOutlinedInput-root": {
+                            color: "white", // Texte du champ en blanc
+                            "& fieldset": {
+                                borderColor: "white", // Bordure du champ en blanc
+                            },
+                        },
+                    }}
+                />
             <Button variant="contained" color="primary" onClick={props.onSubmit} sx={{
                     backgroundColor: "white", // Fond du bouton en blanc
                     color: "black", // Texte du bouton en noir

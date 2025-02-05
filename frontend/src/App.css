@@ -24,6 +24,7 @@
   color: white;
 }
 
+
 .App-link {
   color: #61dafb;
 }
@@ -36,3 +37,18 @@
     transform: rotate(360deg);
   }
 }
+
+.quizz-container {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  width: 350px;
+}
+
+.filmcontainer-container{
+  position: absolute;
+  top: 600px;
+  right: 20px;
+  width: 350px;
+}
+

@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './Header';
 import FilmContainer from './components/FilmContainer';
+import Quizz from './components/Quizz';
 
 //********************************************************************************************************************
 
@@ -10,6 +11,7 @@ function App() {
     <>
       <Header />
       <FilmContainer />
+      <Quizz />
     </>
   );
 }
