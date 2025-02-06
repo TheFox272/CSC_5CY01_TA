@@ -33,9 +33,9 @@ export default function FilmCard(props) {
         })
     }
 
-    const editFilm = () => {
+    const editFilmRequest = () => {
         // debug
-        console.log('editFilm');
+        console.log('editFilmRequest');
 
         // récupérer les valeurs des champs titre, durée et réalisateur
         const titre = document.getElementById('titre').value;
@@ -98,7 +98,7 @@ export default function FilmCard(props) {
                 <Dialog onClose={handleClose} open={open}>
                     <DialogTitle className="starjedi-title">Editer un film</DialogTitle>
                     <DialogContent>
-                        <FilmForm film={props.film} onSubmit={editFilm} handleRealisateurChange={handleRealisateurChange} />
+                        <FilmForm film={props.film} onSubmit={editFilmRequest} handleRealisateurChange={handleRealisateurChange} />
                     </DialogContent>
                 </Dialog>
             </CardContent>
