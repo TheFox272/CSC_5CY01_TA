@@ -14,16 +14,17 @@ public class Film {
 	private String titre;
 	private int duree;
 	private Realisateur realisateur;
-
+	private String description;
 	// Constructeurs
 	public Film() {
 	}
 
-	public Film(long id, String titre, int duree, Class Realisateur) {
+	public Film(long id, String titre, int duree, Class Realisateur, String description) {
 		this.id = id;
 		this.titre = titre;
 		this.duree = duree;
 		this.realisateur = realisateur;
+		this.description = description;
 	}
 
 	// Getters et Setters
@@ -43,6 +44,12 @@ public class Film {
 		this.titre = titre;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) { this.description = description; }
+
 	public int getDuree() {
 		return duree;
 	}
@@ -61,5 +68,4 @@ public class Film {
 
 
 	public String toString(){return titre;}
-
 }

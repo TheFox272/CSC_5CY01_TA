@@ -10,6 +10,8 @@ import javax.validation.constraints.Positive;
 public class FilmForm {
 	@NotBlank
 	private String titre;
+
+	private String description;
 	@Positive
 	@Min(value=1)
 	private int duree;
@@ -23,6 +25,14 @@ public class FilmForm {
 
 	public void setTitre(String titre) {
 		this.titre = titre;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public int getDuree() {
