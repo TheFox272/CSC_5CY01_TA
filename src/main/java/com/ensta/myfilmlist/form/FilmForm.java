@@ -10,7 +10,6 @@ import javax.validation.constraints.Positive;
 public class FilmForm {
 	@NotBlank
 	private String titre;
-
 	private String description;
 	@Positive
 	@Min(value=1)

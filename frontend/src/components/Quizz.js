@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography, Box, Button, Select, MenuItem } from '@mui/material';
 import { getAllFilms } from '../api/FilmApi';
-import mockFilms from '../mock/FilmMock';
 
 export default function Quizz({ className }) {
     const [films, setFilms] = useState([]);
@@ -12,19 +11,24 @@ export default function Quizz({ className }) {
     const [firstTryWins, setFirstTryWins] = useState(0);
 
     useEffect(() => {
-        getAllFilms()
-            .then(() => {
-                setFilms(mockFilms);
-                chooseFilm(mockFilms);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        getAllFilms().then(response => {
+            // setFilms(mockFilms);  // 
+            setFilms(response.data);
+            console.log(response.data);
+        }).catch(err => {
+            console.log(err);
+        })
     }, []);
 
-    const chooseFilm = (listeFilms) => {
-        const randomIndex = Math.floor(Math.random() * listeFilms.length);
-        setFilm(listeFilms[randomIndex]);
+    useEffect(() => {
+        if (films.length > 0) {
+            chooseFilm();
+        }
+    }, [films]);
+
+    const chooseFilm = () => {
+        const randomIndex = Math.floor(Math.random() * films.length);
+        setFilm(films[randomIndex]);
         setSelectedFilm(""); // Réinitialise le choix
         setResult(""); // Réinitialise le résultat
         setShowTitle(false); // Masque le titre au début
@@ -60,7 +64,7 @@ export default function Quizz({ className }) {
                         Description à deviner :
                     </Typography>
                     <Typography variant="body1">
-                        "{film.description || "Chargement..."}"
+                        {film ? film.description : ""}
                     </Typography>
 
                     {/* Sélecteur de film */}

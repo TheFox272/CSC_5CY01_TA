@@ -11,62 +11,23 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import FilmForm from './FilmForm';
-import { putFilm, deleteFilm } from '../api/FilmApi';
+import { deleteFilm } from '../api/FilmApi';
 
 //********************************************************************************************************************
 
 export default function FilmCard(props) {
-    const [selectedRealisateur, setSelectedRealisateur] = useState('');
     const [openEdit, setOpenEdit] = useState(false);
     const [openDetails, setOpenDetails] = useState(false);
-
-    const handleRealisateurChange = (event) => {
-        setSelectedRealisateur(event.target.value);
-    };
 
     const handleClickOnDeleteButton = () => {
         console.log('deleteFilm');
         deleteFilm(props.film.id)
-            .then(response => console.log(response.data))
+            .then(response => {
+                console.log(response.data);
+                window.location.reload();
+            })
             .catch(err => console.log(err));
     };
-
-    const editFilmRequest = () => {
-        // debug
-        console.log('editFilmRequest');
-
-        const titre = document.getElementById('titre').value;
-        const duree = document.getElementById('duree').value;
-        const realisateurId = selectedRealisateur;
-        const description = document.getElementById('description').value;
-
-        const film = {
-            id: props.film.id,
-            titre: titre,
-            duree: parseInt(duree, 10),
-            realisateurId: realisateurId,
-            description: description
-        };
-
-        // appeler la méthode createFilm de l'API
-        putFilm(film).then(reponse => {
-            console.log(reponse.data);
-            // actualiser la liste des films
-            // setFilms([...films, reponse.data]);
-        }).catch(err => {
-            console.log(err);
-        })
-    }
-
-    const [open, setOpen] = useState(false);
-
-    const handleClose = () => {
-        setOpen(false);
-    }
-
-    const handleClickOnEditButton = () => {
-        setOpen(true);
-    }
 
     return (
         <Card className="film-card" variant="outlined">
@@ -121,7 +82,7 @@ export default function FilmCard(props) {
             <Dialog open={openEdit} onClose={() => setOpenEdit(false)}>
                 <DialogTitle className="starjedi-title">Éditer un film</DialogTitle>
                 <DialogContent>
-                    <FilmForm film={props.film} onSubmit={editFilmRequest} handleRealisateurChange={handleRealisateurChange} />
+                    <FilmForm film={props.film} setOpenEdit={setOpenEdit}/>
                 </DialogContent>
             </Dialog>
         </Card>

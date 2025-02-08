@@ -1,58 +1,43 @@
 import { useState, useEffect } from 'react';
-import { getAllFilms, postFilm } from '../api/FilmApi';
+import { getAllFilms } from '../api/FilmApi';
 import FilmForm from './FilmForm';
 import FilmList from './FilmList';
-import mockFilms from '../mock/FilmMock';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import { Button } from '@mui/material';
 
 //********************************************************************************************************************
 export default function FilmContainer({ className }) {
     const [films, setFilms] = useState([]);
-    const [selectedRealisateur, setSelectedRealisateur] = useState('');
-    
-    const handleRealisateurChange = (event) => {
-        setSelectedRealisateur(event.target.value);
-    };
+    const [openAdd, setOpenAdd] = useState(false);
 
     useEffect(() => {
-        getAllFilms().then(reponse => {
-            setFilms(mockFilms);  // setFilms(reponse.data);
+        getAllFilms().then(response => {
+            // setFilms(mockFilms);  // 
+            setFilms(response.data);
             console.log(films);
         }).catch(err => {
             console.log(err);
         })
     }, []);
 
-    const createFilm = () => {
-        console.log('createFilm');
-        const titre = document.getElementById('titre').value;
-        const description = document.getElementById('description').value;
-        const duree = document.getElementById('duree').value;
-        const realisateurId = selectedRealisateur;
-
-        const film = {
-            titre,
-            duree: parseInt(duree, 10),
-            realisateurId,
-            description
-        }
-
-        postFilm(film).then(reponse => {
-            console.log(reponse.data);
-            // actualiser la liste des films
-            setFilms([...films, reponse.data]);
-        }).catch(err => {
-            console.log(err);
-        })
-    }
-
     return (
         <div>
-        <div className={`filmcontainer-container ${className}`}>
-            <FilmForm onSubmit={createFilm} handleRealisateurChange={handleRealisateurChange} />
-        </div>
-        <div>
-            <FilmList films={films} />
-        </div>
+            {/* Boutton d'ajout de film */}
+            <Button onClick={() => setOpenAdd(true)} variant="contained">Ajouter un film</Button>
+            {/* Formulaire d'ajout de film */}
+            <Dialog open={openAdd} onClose={() => setOpenAdd(false)}>
+                <DialogTitle className="starjedi-title">Ajouter un film</DialogTitle>
+                <DialogContent>
+                    <FilmForm setOpenEdit={setOpenAdd} />
+                </DialogContent>
+            </Dialog>
+            
+            {/* Liste des films */}
+            <div>
+                <FilmList films={films} />
+            </div>
         </div>
 
     );

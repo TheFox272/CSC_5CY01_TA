@@ -14,7 +14,9 @@ public class EditFilmForm {
     @Min(value=1)
     @NotNull
     private long id;
+    @NotBlank
     private String titre;
+    private String description;
     @Positive
     @Min(value=1)
     private int duree;
@@ -54,5 +56,12 @@ public class EditFilmForm {
         this.realisateurId = realisateurId;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
 

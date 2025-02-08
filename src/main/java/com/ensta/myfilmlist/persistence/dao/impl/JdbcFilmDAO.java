@@ -151,8 +151,8 @@ public class JdbcFilmDAO implements FilmDAO {
     }
 
     public Film updateFilm(Film film){
-        String sql = "UPDATE FILM SET TITRE = ?, DUREE = ?, REALISATEUR_ID = ? WHERE id = ?";
-        jdbcTemplate.update(sql, film.getTitre(), film.getDuree(), film.getRealisateur().getId(), film.getId());
+        String sql = "UPDATE FILM SET TITRE = ?, DUREE = ?, REALISATEUR_ID = ?, DESCRIPTION = ? WHERE ID = ?";
+        jdbcTemplate.update(sql, film.getTitre(), film.getDuree(), film.getRealisateur().getId(), film.getDescription(), film.getId());
         return film;
     }
 }

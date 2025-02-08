@@ -7,11 +7,11 @@ export function getAllFilms(){
 }
 
 export function postFilm(film){
-	return axios.post(FILM_URI + '?realisateurId=' + film.realisateurId + '&titre=' + film.titre + '&duree=' + film.duree);
+	return axios.post(FILM_URI + '?realisateurId=' + film.realisateurId + '&titre=' + film.titre + '&duree=' + film.duree + '&description=' + film.description);
 }
 
 export function putFilm(film){
-	return axios.put(FILM_URI, film);
+	return axios.put(FILM_URI + '?id=' + film.id + '&realisateurId=' + film.realisateurId + '&titre=' + film.titre + '&duree=' + film.duree + '&description=' + film.description);
 }
 
 export function deleteFilm(filmId){

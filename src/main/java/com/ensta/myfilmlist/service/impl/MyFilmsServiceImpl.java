@@ -204,10 +204,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             film.setTitre(filmForm.getTitre());
             film.setDuree(filmForm.getDuree());
             film.setRealisateur(realisateur);
-            System.out.println(film.getTitre());
-            System.out.println(film.getRealisateur().getNom());
-            System.out.println(film.getDuree());
-            System.out.println(film.getId());
+            film.setDescription(filmForm.getDescription());
             filmDAO.updateFilm(film);
             return FilmMapper.convertFilmToFilmDTO(film);
 
