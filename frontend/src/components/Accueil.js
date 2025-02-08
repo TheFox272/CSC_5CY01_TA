@@ -27,6 +27,7 @@ export default function Accueil() {
                     color: 'yellow',
                     WebkitTextStroke: '5px black',
                     textStroke: '5px white',
+                    fontFamily: "'Starjedi', sans-serif",
                     fontWeight: 800,
                 }}
             >

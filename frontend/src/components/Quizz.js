@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography, Box, Button, Select, MenuItem } from '@mui/material';
 import { getAllFilms } from '../api/FilmApi';
+import starWarsImage from '../Image_accueil.png';
 
 export default function Quizz({ className }) {
     const [films, setFilms] = useState([]);
