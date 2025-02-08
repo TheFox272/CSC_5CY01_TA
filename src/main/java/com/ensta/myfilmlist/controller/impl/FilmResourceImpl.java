@@ -2,6 +2,7 @@ package com.ensta.myfilmlist.controller.impl;
 
 import java.util.List;
 
+import com.ensta.myfilmlist.form.EditFilmForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -64,6 +65,22 @@ public class FilmResourceImpl implements FilmResource {
         } catch (ServiceException e) {
             // En cas d'erreur, on lève une ControllerException
             throw new ControllerException("Erreur lors de la création du film : " + e.getMessage(), e);
+        }
+    }
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping
+    public ResponseEntity<FilmDTO> editFilm(@RequestBody EditFilmForm filmForm) throws ControllerException {
+        try {
+            // Appel au service pour update le film
+            FilmDTO updatedFilm = filmService.updateFilm(filmForm);
+
+            // Retourne une réponse 201 Created avec le film créé
+            return new ResponseEntity<>(updatedFilm, HttpStatus.CREATED);
+        } catch (ServiceException e) {
+            // En cas d'erreur, on lève une ControllerException
+            throw new ControllerException("Erreur lors de la modification du film : " + e.getMessage(), e);
         }
     }
 

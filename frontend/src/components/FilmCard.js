@@ -31,8 +31,9 @@ export default function FilmCard(props) {
             .catch(err => console.log(err));
     };
 
-    const editFilm = () => {
-        console.log('editFilm');
+    const editFilmRequest = () => {
+        // debug
+        console.log('editFilmRequest');
 
         const titre = document.getElementById('titre').value;
         const duree = document.getElementById('duree').value;
@@ -120,7 +121,7 @@ export default function FilmCard(props) {
             <Dialog open={openEdit} onClose={() => setOpenEdit(false)}>
                 <DialogTitle className="starjedi-title">Éditer un film</DialogTitle>
                 <DialogContent>
-                    <FilmForm film={props.film} onSubmit={editFilm} handleRealisateurChange={handleRealisateurChange} />
+                    <FilmForm film={props.film} onSubmit={editFilmRequest} handleRealisateurChange={handleRealisateurChange} />
                 </DialogContent>
             </Dialog>
         </Card>

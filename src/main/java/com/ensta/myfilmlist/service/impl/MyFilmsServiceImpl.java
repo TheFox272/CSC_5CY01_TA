@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.ensta.myfilmlist.form.EditFilmForm;
 import com.ensta.myfilmlist.form.RealisateurForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,6 +73,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
 
         return realisateur;
     }
+
 
     @Override
     public int calculerDureeTotale(List<Film> listeFilms) throws ServiceException {
@@ -191,6 +193,32 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             throw new ServiceException("Erreur lors de la création du film", e);
         }
     }
+
+    @Transactional
+    public FilmDTO updateFilm(EditFilmForm filmForm) throws ServiceException {
+
+        try {
+
+            Realisateur realisateur = realisateurDAO.findById(filmForm.getRealisateurId()).orElseThrow(() -> new ServiceException("Le réalisateur spécifié n'existe pas."));
+            Film film = filmDAO.findById(filmForm.getId()).orElseThrow(() -> new ServiceException("Le film spécifié n'existe pas."));
+            film.setTitre(filmForm.getTitre());
+            film.setDuree(filmForm.getDuree());
+            film.setRealisateur(realisateur);
+            System.out.println(film.getTitre());
+            System.out.println(film.getRealisateur().getNom());
+            System.out.println(film.getDuree());
+            System.out.println(film.getId());
+            filmDAO.updateFilm(film);
+            return FilmMapper.convertFilmToFilmDTO(film);
+
+        } catch (Exception e) {
+            throw new ServiceException("PRINTTTTTTTTT", e);
+        }
+
+
+
+    }
+
 
     @Transactional
     @Override

@@ -34,7 +34,7 @@ Pour faire les tests:
 ```
 
 ## Frontend notes
-!dans le dossier frontend!
+! depuis le frontend !
 
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/icons-material

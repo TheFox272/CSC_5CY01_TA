@@ -104,14 +104,14 @@ public class JdbcRealisateurDAO implements RealisateurDAO{
 
 
     public Realisateur update(Realisateur realisateur){
-        Realisateur UpdatedRealisateur=findById(realisateur.getId()).get();
+        // Realisateur UpdatedRealisateur=findById(realisateur.getId()).get();
         // le .get() permet de récupérer le réalisateur s'il en trouve un dans l'optionnel et fait une erreur sinon
-        UpdatedRealisateur.setNom(realisateur.getNom());
-        UpdatedRealisateur.setPrenom(realisateur.getPrenom());
-        UpdatedRealisateur.setDateNaissance(realisateur.getDateNaissance());
-        UpdatedRealisateur.setCelebre(realisateur.isCelebre());
-        UpdatedRealisateur.setFilmRealises(realisateur.getFilmRealises());
-        UpdatedRealisateur.setDateNaissance(realisateur.getDateNaissance());
+        // UpdatedRealisateur.setNom(realisateur.getNom());
+        // UpdatedRealisateur.setPrenom(realisateur.getPrenom());
+        // UpdatedRealisateur.setDateNaissance(realisateur.getDateNaissance());
+        // UpdatedRealisateur.setCelebre(realisateur.isCelebre());
+        // UpdatedRealisateur.setFilmRealises(realisateur.getFilmRealises());
+        // UpdatedRealisateur.setDateNaissance(realisateur.getDateNaissance());
 
         jdbcTemplate.update("UPDATE REALISATEUR SET NOM =?, PRENOM =? ,DATE_NAISSANCE = ?, CELEBRE=?  WHERE id = ?",
                 realisateur.getNom(),
@@ -120,7 +120,7 @@ public class JdbcRealisateurDAO implements RealisateurDAO{
                 realisateur.isCelebre(),
                 realisateur.getId()
         );
-        return UpdatedRealisateur;
+        return realisateur;
         }
 
     @Override
