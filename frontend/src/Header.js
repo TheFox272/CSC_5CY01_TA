@@ -3,6 +3,11 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
+// ajout pour le routing
+
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 export default function Header() {
     return (
@@ -12,14 +17,21 @@ export default function Header() {
                     variant="h6"
                     component="div"
                     sx={{
-                      flexGrow: 1,
-                      color: "yellow", // Couleur du texte en jaune
-                      fontFamily: "'Starjedi', sans-serif", // Police Star Jedi
-                  }}
+                        flexGrow: 1,
+                        color: "yellow",
+                        fontFamily: "'Starjedi', sans-serif"
+                    }}
                 >
                     My Films
                 </Typography>
+
+                <Box>
+                    <Button component={Link} to="/" sx={{ color: "yellow" }}>Accueil</Button>
+                    <Button component={Link} to="/films" sx={{ color: "yellow" }}>Films</Button>
+                    <Button component={Link} to="/quizz" sx={{ color: "yellow" }}>Quizz</Button>
+                </Box>
             </Toolbar>
         </AppBar>
     );
 }
+
