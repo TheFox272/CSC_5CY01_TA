@@ -49,22 +49,25 @@ public class MyfilmlistTests {
 		avatar.setTitre("Avatar");
 		avatar.setDuree(162);
 		avatar.setRealisateur(jamesCameron);
+		avatar.setDescription("test");
 
 		Film laCommunauteDeLAnneau = new Film();
 		laCommunauteDeLAnneau.setTitre("La communauté de l'anneau");
 		laCommunauteDeLAnneau.setDuree(178);
 		laCommunauteDeLAnneau.setRealisateur(peterJackson);
+		laCommunauteDeLAnneau.setDescription("La communauté de l'anneau");
 
 		Film lesDeuxTours = new Film();
 		lesDeuxTours.setTitre("Les deux tours");
 		lesDeuxTours.setDuree(179);
 		lesDeuxTours.setRealisateur(peterJackson);
+		lesDeuxTours.setDescription("Les deux tours");
 
 		Film leRetourDuRoi = new Film();
 		leRetourDuRoi.setTitre("Le retour du roi");
 		leRetourDuRoi.setDuree(201);
 		leRetourDuRoi.setRealisateur(peterJackson);
-
+		leRetourDuRoi.setDescription("Le retour du roi");
 		// Affectation des films aux realisateurs
 
 		List<Film> peterJacksonFilms = new ArrayList<>();

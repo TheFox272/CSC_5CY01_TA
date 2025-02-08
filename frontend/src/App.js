@@ -4,6 +4,7 @@ import Header from './Header';
 import FilmContainer from './components/FilmContainer';
 import Quizz from './components/Quizz';
 import Accueil from './components/Accueil';
+import SearchBar from './components/SearchBar';
 
 // pour le routing
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';

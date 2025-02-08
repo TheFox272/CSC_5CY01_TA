@@ -61,6 +61,7 @@ public class JdbcFilmDAO implements FilmDAO {
             film.setId(resultSet.getLong("id"));
             film.setTitre(resultSet.getString("titre"));
             film.setDuree(resultSet.getInt("duree"));
+            film.setDescription(resultSet.getString("description"));
 
             Long realisateurId = resultSet.getLong("realisateur_id");
             if (!resultSet.wasNull()) { // Si le champ n'est pas NULL
@@ -81,7 +82,7 @@ public class JdbcFilmDAO implements FilmDAO {
     @Override
     public List<Film> findAll() {
         String sql = "SELECT " +
-                "f.id AS film_id, f.titre AS film_titre, f.duree AS film_duree, " +
+                "f.id AS film_id, f.titre AS film_titre, f.duree AS film_duree, f.description AS film_description, " +
                 "r.id AS realisateur_id, r.nom AS realisateur_nom, r.prenom AS realisateur_prenom, " +
                 "r.date_naissance AS realisateur_date_naissance, r.celebre AS realisateur_celebre " +
                 "FROM FILM f " +
@@ -94,7 +95,7 @@ public class JdbcFilmDAO implements FilmDAO {
 
     @Override
     public Film save(Film film) {
-        String CREATE_FILM_QUERY = "INSERT INTO FILM (titre, duree, realisateur_id) VALUES (?, ?, ?)";
+        String CREATE_FILM_QUERY = "INSERT INTO FILM (titre, duree, realisateur_id, description) VALUES (?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         PreparedStatementCreator creator = conn -> {
             PreparedStatement statement = conn.prepareStatement(
@@ -104,6 +105,7 @@ public class JdbcFilmDAO implements FilmDAO {
             statement.setString(1, film.getTitre());
             statement.setInt(2, film.getDuree());
             statement.setLong(3, film.getRealisateur().getId());
+            statement.setString(4, film.getDescription());
             return statement;
         };
         // ici insertion
@@ -114,7 +116,7 @@ public class JdbcFilmDAO implements FilmDAO {
 
     @Override
     public Optional<Film> findById(long id) {
-        String sql = "SELECT f.id AS film_id, f.titre AS film_titre, f.duree AS film_duree, " +
+        String sql = "SELECT f.id AS film_id, f.titre AS film_titre, f.duree AS film_duree, f.description AS film_description, "+
                     "r.id AS realisateur_id, r.nom AS realisateur_nom, r.prenom AS realisateur_prenom, " +
                     "r.date_naissance AS realisateur_date_naissance, r.celebre AS realisateur_celebre " +
                     "FROM FILM f " +
@@ -138,7 +140,7 @@ public class JdbcFilmDAO implements FilmDAO {
     @Override
     public List<Film> findByRealisateurId(long realisateurId) {
         String sql = "SELECT " +
-                "f.id AS film_id, f.titre AS film_titre, f.duree AS film_duree, " +
+                "f.id AS film_id, f.titre AS film_titre, f.duree AS film_duree, f.description AS film_description," +
                 "r.id AS realisateur_id, r.nom AS realisateur_nom, r.prenom AS realisateur_prenom, " +
                 "r.date_naissance AS realisateur_date_naissance, r.celebre AS realisateur_celebre " +
                 "FROM FILM f " +

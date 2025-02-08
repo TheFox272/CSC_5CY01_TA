@@ -34,6 +34,8 @@ Pour faire les tests:
 ```
 
 ## Frontend notes
+!dans le dossier frontend!
 
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/icons-material
+npm install react-router-dom

@@ -38,17 +38,16 @@
   }
 }
 
-.quizz-container {
+.filmcontainer-container {
   position: absolute;
   top: 80px;
   right: 20px;
   width: 350px;
 }
 
-.filmcontainer-container{
+.quizz-container{
   position: absolute;
-  top: 600px;
+  top: 500px;
   right: 20px;
   width: 350px;
 }
-

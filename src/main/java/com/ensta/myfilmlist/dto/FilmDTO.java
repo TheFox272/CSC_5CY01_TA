@@ -10,6 +10,7 @@ public class FilmDTO {
 	private long id;
 
 	private String titre;
+	private String description;
 
 	private int duree;
 
@@ -38,6 +39,14 @@ public class FilmDTO {
 		this.titre = titre;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public int getDuree() {
 		return duree;
 	}
@@ -48,7 +57,7 @@ public class FilmDTO {
 
 	@Override
 	public String toString() {
-		return "FilmDTO [id=" + id + ", titre=" + titre + ", duree=" + duree + "]";
+		return "FilmDTO [id=" + id + ", titre=" + titre + ", duree=" + duree + ",  description=" + description + "]";
 	}
 
 }

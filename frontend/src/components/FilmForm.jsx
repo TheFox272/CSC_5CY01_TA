@@ -1,4 +1,4 @@
-import { Button, Select, TextField, MenuItem, Box } from "@mui/material";
+import { Button, Select, TextField, MenuItem, Box, Typography } from "@mui/material";
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import { useState, useEffect } from "react";
@@ -25,7 +25,7 @@ export default function FilmForm(props) {
                 flexDirection: "column",
                 gap: 2, // Espace entre les champs
                 width: "100%", // Ajuste la largeur si nécessaire
-                maxWidth: 400, // Largeur maximale
+                maxWidth: 350, // Largeur maximale
                 margin: "0 auto", // Centrer horizontalement
                 py: 2,
                 backgroundImage: "url('/fond_etoilé.jpg')",
@@ -37,6 +37,16 @@ export default function FilmForm(props) {
                 boxShadow: 3, // Ajoute une ombre
             }}
         >
+            <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  ml: 4,
+                  flexGrow: 1,
+                  color: "yellow", // Couleur du texte en jaune
+                  fontFamily: "'Starjedi', sans-serif", // Police Star Jedi
+              }}
+            >Créer un nouveau film</Typography>
                 <TextField
                     id="titre"
                     label="Titre"

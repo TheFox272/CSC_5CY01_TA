@@ -106,7 +106,7 @@ public class ConnectionManager {
 
 			ResultSet rs = stmt.executeQuery("SELECT * FROM FILM");
 			while (rs.next()) {
-				System.out.println(rs.getInt(1) + " : " + rs.getString(2) + " : " + rs.getInt(3));
+				System.out.println(rs.getInt(1) + " : " + rs.getString(2) + " : " + rs.getInt(3) + " : " + rs.getString(4));
 			}
 
 			System.out.println("Success!");

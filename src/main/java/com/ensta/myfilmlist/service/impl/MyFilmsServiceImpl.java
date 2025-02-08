@@ -174,6 +174,7 @@ public class MyFilmsServiceImpl implements MyFilmsService {
             film.setTitre(filmForm.getTitre());
             film.setDuree(filmForm.getDuree());
             film.setRealisateur(realisateur);
+            film.setDescription(filmForm.getDescription());
 
             List<Film> ancienneListeFilm = new ArrayList<>(realisateur.getFilmRealises());
             ancienneListeFilm.add(film);
