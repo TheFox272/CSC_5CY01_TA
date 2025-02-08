@@ -24,11 +24,10 @@ export default function Accueil() {
                 variant="h1"
                 gutterBottom
                 sx={{
-                    color: 'yellow', // Bleu sombre mais doux
-                    WebkitTextStroke: '5px black', // Bord blanc autour du texte
+                    color: 'yellow',
+                    WebkitTextStroke: '5px black',
                     textStroke: '5px white',
                     fontWeight: 800,
-                    // Pour la compatibilité avec tous les navigateurs
                 }}
             >
                 Bienvenue sur My Films
@@ -39,17 +38,29 @@ export default function Accueil() {
             </Typography>
             <Button
                 variant="contained"
-                color="primary"
+                color="warning"
                 href="/films"
-                sx={{ marginBottom: '10px' }}
+                sx={{
+                    backgroundColor: '#FFD700',
+                    '&:hover': { backgroundColor: '#FFC107' },
+                    marginRight: '10px',
+                }}
             >
                 Voir les films
             </Button>
-            <Button variant="contained"
-                    color="secondary"
-                    href="/quizz">
-                Participer au quizz
+
+            <Button
+                variant="contained"
+                sx={{
+                    backgroundColor: '#FFD700',
+                    '&:hover': { backgroundColor: '#FFCC00' },
+                }}
+                href="/quizz"
+            >
+                Accéder au quizz
             </Button>
+
+
         </Box>
     );
 }
