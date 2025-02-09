@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Film(id INT primary key auto_increment, titre VARCHAR
 INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Avatar', 162, 1,'Pocahontas mais dans l''espace avec des grands Schtroumpfs.');
 INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('La communauté de l''anneau', 178, 2,'Sean Bean se fait encore fait fumer.');
 INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Les deux tours', 179, 2,'Un soleil rouge se lève, beaucoup de sang a dû couler cette nuit.');
-INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Le retour du roi', 201, 2,'Un mec trouve un bijou, son neveu le rapporte à l''usine'.);
+INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Le retour du roi', 201, 2,'Un mec trouve un bijou, son neveu le rapporte à l''usine.');
 INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Titanic', 201, 1,'Plouf !');
 INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Batman', 126, 3,'Un milliardaire se déguise en animal et tabasse un clown.');
 INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('La Belle et la Bête', 147, 4,'Le syndrome de Stockholm mais avec un animal.');
