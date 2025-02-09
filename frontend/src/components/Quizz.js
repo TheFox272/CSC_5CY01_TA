@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography, Box, Button, Select, MenuItem } from '@mui/material';
 import { getAllFilms } from '../api/FilmApi';
-import starWarsImage from '../Image_accueil.png';
+import Fond_ecran_quizz from '../Fond_ecran_quizz.jpg';
 
 export default function Quizz({ className }) {
     const [films, setFilms] = useState([]);
@@ -54,6 +54,10 @@ export default function Quizz({ className }) {
     };
 
     return (
+        <Box>
+
+        <Box><Card sx={{position: 'relative', width: '100vw', height: '100vh', backgroundImage: `url(${Fond_ecran_quizz})`, backgroundSize: 'cover'}}></Card></Box>
+
         <Box className={`quizz-container ${className}`}>
             <Card sx={{ boxShadow: 3, maxWidth: 350, p: 2 }}>
                 <CardContent>
@@ -152,6 +156,7 @@ export default function Quizz({ className }) {
                     </Typography>
                 </CardContent>
             </Card>
+        </Box>
         </Box>
     );
 }
