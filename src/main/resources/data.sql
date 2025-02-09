@@ -28,10 +28,10 @@ INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Harry potter'
 INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Matrix', 146, 8,'Un employé de bureau déprimé rejoint une secte et déstabilise le gouvernement.');
 INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Star Wars prélogie', 146, 9,'Des prêtres achètent un enfant pour le former au culte et il se marie avec une politicienne de deux fois son âge.');
 INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Narnia', 143, 10,'Les enfants sortent du placard.');
-INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Fight Club', 92, 5,'Un mec se met des gifles tout seul.');
+INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Fight Club', 139, 5,'Un mec se met des gifles tout seul.');
 INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Taken', 93, 12,'Liam Neeson doit aller chercher sa fille.');
 INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('E.T.', 120, 13,'Un immigré clandestin est poursuivi par les forces de l''ordre.');
-INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Charlie et la chocolaterie', 115, 3,'Un chocolatier lunatique tue lentement des enfants devant leur parents.');
+INSERT INTO Film(titre, duree, realisateur_id,description) VALUES('Charlie et la chocolaterie', 115, 3,'Un chocolatier lunatique tue lentement des enfants devant leurs parents.');
 
 
 
