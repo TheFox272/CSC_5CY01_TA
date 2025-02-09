@@ -100,46 +100,46 @@ export default function FilmForm(props) {
                   fontFamily: "'Starjedi', sans-serif", // Police Star Jedi
               }}
             >
-                {filmId ? "Editer un film" : "Créer un film"}
+                {filmId ? "Editer un film" : "Ajouter un film"}
             </Typography>
-                <TextField
-                    id="titre"
-                    label="Titre"
-                    variant="outlined"
-                    value={titre}
-                    onChange={(e) => setTitre(e.target.value)}
-                    sx={{
-                        color: "white", // Appliquer la couleur du texte ici
-                        "& .MuiInputLabel-root": {
-                            color: "white", // Appliquer la couleur blanche au label
+            <TextField
+                id="titre"
+                label="Titre"
+                variant="outlined"
+                value={titre}
+                onChange={(e) => setTitre(e.target.value)}
+                sx={{
+                    color: "white", // Appliquer la couleur du texte ici
+                    "& .MuiInputLabel-root": {
+                        color: "white", // Appliquer la couleur blanche au label
+                    },
+                    "& .MuiOutlinedInput-root": {
+                        color: "white", // Texte du champ en blanc
+                        "& fieldset": {
+                            borderColor: "white", // Bordure du champ en blanc
                         },
-                        "& .MuiOutlinedInput-root": {
-                            color: "white", // Texte du champ en blanc
-                            "& fieldset": {
-                                borderColor: "white", // Bordure du champ en blanc
-                            },
+                    },
+                }}
+            />
+            <TextField
+                id="duree"
+                label="Durée"
+                variant="outlined"
+                value={duree}
+                onChange={(e) => setDuree(e.target.value)}
+                sx={{
+                    color: "white", // Appliquer la couleur du texte ici
+                    "& .MuiInputLabel-root": {
+                        color: "white", // Appliquer la couleur blanche au label
+                    },
+                    "& .MuiOutlinedInput-root": {
+                        color: "white", // Texte du champ en blanc
+                        "& fieldset": {
+                            borderColor: "white", // Bordure du champ en blanc
                         },
-                    }}
-                />
-                <TextField
-                    id="duree"
-                    label="Durée"
-                    variant="outlined"
-                    value={duree}
-                    onChange={(e) => setDuree(e.target.value)}
-                    sx={{
-                        color: "white", // Appliquer la couleur du texte ici
-                        "& .MuiInputLabel-root": {
-                            color: "white", // Appliquer la couleur blanche au label
-                        },
-                        "& .MuiOutlinedInput-root": {
-                            color: "white", // Texte du champ en blanc
-                            "& fieldset": {
-                                borderColor: "white", // Bordure du champ en blanc
-                            },
-                        },
-                    }}
-                />
+                    },
+                }}
+            />
             <FormControl sx={{ width: "100%"}}>
                 <InputLabel id="demo-select-small-label" sx={{ color: "white" }}>Réalisateur</InputLabel>
                 <Select
@@ -186,7 +186,7 @@ export default function FilmForm(props) {
                         backgroundColor: "gray", // Couleur de fond au survol
                     },
                 }}>
-                {filmId ? "Editer" : "Créer"}
+                {filmId ? "Editer" : "Ajouter"}
             </Button>
         </Box>
     );

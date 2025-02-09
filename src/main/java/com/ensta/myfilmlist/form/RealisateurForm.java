@@ -10,6 +10,7 @@ public class RealisateurForm {
 
     private String nom;
     private String prenom;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateNaissance;
 
     // Getters et Setters
@@ -29,7 +30,7 @@ public class RealisateurForm {
         this.prenom = prenom;
     }
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    
     public LocalDate getDateNaissance() {
         return dateNaissance;
     }

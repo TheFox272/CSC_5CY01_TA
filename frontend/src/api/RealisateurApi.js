@@ -40,6 +40,6 @@ export function getAllRealisateur(){
     
 
 export function postRealisateur(realisateur){
-	return axios.post(REALISATEUR_URI, realisateur);
+	return axios.post(REALISATEUR_URI + '?nom=' + realisateur.nom + '&prenom=' + realisateur.prenom + '&dateNaissance=' + realisateur.dateNaissance);
 }
 

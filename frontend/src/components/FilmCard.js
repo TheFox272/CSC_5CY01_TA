@@ -80,7 +80,6 @@ export default function FilmCard(props) {
 
             {/* Fenêtre modale pour éditer un film */}
             <Dialog open={openEdit} onClose={() => setOpenEdit(false)}>
-                <DialogTitle className="starjedi-title">Éditer un film</DialogTitle>
                 <DialogContent>
                     <FilmForm film={props.film} setOpenEdit={setOpenEdit}/>
                 </DialogContent>
